@@ -3,11 +3,9 @@ import redis
 import string
 import random
 import time
-from collections import defaultdict
-from decimal import Decimal
 from django.contrib.auth.models import User
 from django.conf import settings
-from .models import UserProfile, LKLTrade01, UserPos, LKLD1, UserAlipay
+from .models import UserProfile
 from kk import config
 
 
@@ -58,8 +56,6 @@ def generate_code(n=6):
         return code
 
 
-## 工具类
-
 def datetime_to_timestamp(adatetime):
     return time.mktime(adatetime.timetuple())
 
@@ -71,7 +67,7 @@ def wrapper_raven(fun):
     from raven import Client
     try:
         client = Client(settings.RAVEN_CONFIG["dsn"])
-    except:
+    except Exception:
         client = Client()
 
     def wrap(cls, *args, **kwargs):

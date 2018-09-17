@@ -3,7 +3,7 @@ import redis
 from datetime import datetime
 import random
 import string
-from lkl import config
+from kk import config
 
 rclient = redis.Redis(**config.REDIS_DATA)
 
@@ -28,7 +28,7 @@ def get_client_ip(request):
     return request.META.get('REMOTE_ADDR', None)
 
 
-def wx_tixian(open_id, fen, name, user_ip="139.199.102.27"):
+def wx_tixian(open_id, fen, name, user_ip=config.SERVER_IP):
     """
     {'partner_trade_no': '1498390922201805216403871295',
     'payment_time': '2018-05-21 21:03:15',

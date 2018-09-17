@@ -2,20 +2,11 @@
 */1 * * * * /usr/local/qcloud/stargate/admin/start.sh > /dev/null 2>&1 &
 */20 * * * * /usr/sbin/ntpdate ntpupdate.tencentyun.com >/dev/null &
 
-# bak mysql
-1 0 * * * /data/mysql_bak/bak.sh > /dev/null 2>&1 &
-
-
 
 # sdb data
 */5 * * * * /projects/kaka/config/run_command_pro.sh sdb_trade >> /data/script/sdb_data.log 2>&1
 */5 * * * * /projects/kaka/config/run_command_pro.sh sdb_token >> /data/script/sdb_token.log 2>&1
 1 */4 * * * /projects/kaka/config/run_command_pro.sh sdb_terminal >> /data/script/sdb_terminal.log 2>&1
-
-# hhjk data
-*/15 * * * * /projects/kaka/config/run_command_pro.sh hhjk_merchant >> /data/script/hhjk_data.log 2>&1
-*/15 * * * * /projects/kaka/config/run_command_pro.sh hhjk_terminal >> /data/script/hhjk_data.log 2>&1
-*/15 * * * * /projects/kaka/config/run_command_pro.sh hhjk_trade >> /data/script/hhjk_data.log 2>&1
 
 
 # run once

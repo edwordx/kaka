@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'lkl.urls'
+ROOT_URLCONF = 'kk.urls'
 
 TEMPLATES = [
     {
@@ -223,14 +223,13 @@ SUIT_CONFIG = {
     'CONFIRM_UNSAVED_CHANGES': True,  # Default True
 
     # menu
-    # 'SEARCH_URL': '/admin/auth/user/',
     'SEARCH_URL': '',
     'MENU_OPEN_FIRST_CHILD': True,  # Default True
     'MENU': (
         # 'sites',
         {'app': 'auth', 'icon': 'icon-lock', 'models': ('user', 'group')},
-        {'app': 'user', 'icon': 'icon-user', 'models': ('UserProfile', 'UserAddress', 'UserPos', 'UserTrade', "UserFenRun", "UserAlipay")},
-        {'label': u'微信用户', 'icon': 'icon-user', 'app': 'user', 'models': ('WXUser', )},
+        {'app': 'vuser', 'icon': 'icon-user', 'models': ('UserProfile', )},
+        {'label': u'微信用户', 'icon': 'icon-user', 'app': 'vuser', 'models': ('WXUser', )},
         {'label': u'闪电宝', 'icon': 'icon-heart', 'app': 'shandianbao', 'models': ('SDBTrade', 'SDBTerminal', 'SDBToken')},
     ),
 

@@ -9,7 +9,7 @@ from kk import utils, config
 from bs4 import BeautifulSoup
 import time
 from shandianbao.models import SDBTrade
-from user.utils import wrapper_raven
+from vuser.utils import wrapper_raven
 from shandianbao.dbutils import get_token_code, disable_token
 
 

@@ -1,27 +1,31 @@
 # -*- coding: utf-8 -*-
-import json
 import logging
-import requests
-import cPickle as pickle
-from datetime import datetime
-from urllib import quote_plus
 from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
-from django.contrib.auth import views as django_views
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from captcha.models import CaptchaStore
 from captcha.helpers import captcha_image_url
-from .forms import LoginForm, RegisterForm, UserPosForm, UserAlipayForm, TixianRMBForm
-from .models import UserProfile, UserPos, UserAlipay, UserFenRun, FenRunOrder, TiXianOrder, WXUser
-from . import utils, dbutils
+from .forms import LoginForm, RegisterForm
+from .models import UserProfile, WXUser
+from . import dbutils
 from kk import config, wx_utils
-from .utils import rclient
+
 
 logger = logging.getLogger('statistics')
+
+
+def account(request):
+    """
+    账户页
+    """
+    data = {}
+    if request.user.is_authenticated:
+        return render(request, "lkl/account.html", data)
+    else:
+        return redirect("vuser_login")
 
 
 def loginx(request):
@@ -94,14 +98,6 @@ def register(request):
     return render(request, "kk/register.html", data)
 
 
-def password_reset(request):
-    data = {}
-    hashkey = CaptchaStore.generate_key()
-    img_url = captcha_image_url(hashkey)
-    data.update({"img_url": img_url, "hashkey": hashkey})
-    return render(request, "kk/password_reset.html", data)
-
-
 @login_required
 def bind_wx_page(request):
     # 绑定微信
@@ -140,7 +136,7 @@ def bind_wx(request):
 
 def wx_redirect(request):
     """
-    info response
+    Info response
     {
     "openid":" OPENID",
     "nickname": NICKNAME,
@@ -159,7 +155,7 @@ def wx_redirect(request):
     username = request.GET.get("state")
     user = dbutils.get_user_by_username(username)
     res = wx_utils.get_access_token(code)
-    access_token = res["access_token"]
+    # access_token = res["access_token"]
     openid = res["openid"]
     scope = res["scope"]
     # 判断openid 是否绑定过

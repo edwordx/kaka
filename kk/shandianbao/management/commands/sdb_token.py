@@ -8,7 +8,7 @@ from io import BytesIO
 import warnings
 from django.core.management.base import BaseCommand
 from shandianbao.img import get_code_value
-from user.utils import wrapper_raven
+from vuser.utils import wrapper_raven
 from shandianbao import dbutils
 from shandianbao import config
 

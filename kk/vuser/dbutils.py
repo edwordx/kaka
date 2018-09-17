@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
-import time
-from datetime import datetime, timedelta
-from collections import defaultdict
-from decimal import Decimal
-from django.db import transaction
-from django.contrib.auth.models import User
 from django.db.models import Q
 from . import models
-from . import utils
-from kk.utils import string_to_datetime
 
 
 # 微信绑定相关
