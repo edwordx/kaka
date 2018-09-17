@@ -23,7 +23,7 @@ def home(request):
     用户首页
     """
     data = {}
-    return render(request, "kk/home.html", data)
+    return render(request, "kk/index.html", data)
 
 
 def news(request):
@@ -50,7 +50,7 @@ def loginx(request):
     登陆
     """
     if request.user.is_authenticated:
-        return redirect("user_account")
+        return redirect("vuser_account")
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -59,7 +59,7 @@ def loginx(request):
             if user.is_active:
                 auth.login(request, user)
                 request.session['user_name'] = username
-                return redirect("user_account")
+                return redirect("vuser_account")
     hashkey = CaptchaStore.generate_key()
     img_url = captcha_image_url(hashkey)
     data = {"img_url": img_url, "hashkey": hashkey}
@@ -69,12 +69,12 @@ def loginx(request):
 def login(request):
     data = {}
     if request.user.is_authenticated:
-        return redirect("user_account")
+        return redirect("vuser_account")
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             auth.login(request, form.get_user())
-            return redirect("user_account")
+            return redirect("vuser_account")
         else:
             error = form.errors.get("__all__")
             data.update({"error": error, "errors": form.errors})
@@ -87,13 +87,13 @@ def login(request):
 @login_required
 def logout(request):
     auth.logout(request)
-    return redirect("jk_home")
+    return redirect("vuser_home")
 
 
 def register(request):
     data = {}
     if request.user.is_authenticated:
-        return redirect("user_account")
+        return redirect("vuser_account")
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -105,7 +105,7 @@ def register(request):
             user.save()
             UserProfile.objects.create(user=user, phone=user.username, sex=sex, name=name, father=form.get_father_user())
             auth.login(request, user)
-            return redirect("user_account")
+            return redirect("vuser_account")
         else:
             error = form.errors.get("__all__")
             data.update({"error": error, "errors": form.errors})
