@@ -23,7 +23,7 @@ def account(request):
     """
     data = {}
     if request.user.is_authenticated:
-        return render(request, "lkl/account.html", data)
+        return render(request, "kk/account.html", data)
     else:
         return redirect("vuser_login")
 

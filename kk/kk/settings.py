@@ -228,7 +228,7 @@ SUIT_CONFIG = {
     'MENU': (
         # 'sites',
         {'app': 'auth', 'icon': 'icon-lock', 'models': ('user', 'group')},
-        {'app': 'vuser', 'icon': 'icon-user', 'models': ('UserProfile', )},
+        {'label': u'用户', 'app': 'vuser', 'icon': 'icon-user', 'models': ('UserProfile', )},
         {'label': u'微信用户', 'icon': 'icon-user', 'app': 'vuser', 'models': ('WXUser', )},
         {'label': u'闪电宝', 'icon': 'icon-heart', 'app': 'shandianbao', 'models': ('SDBTrade', 'SDBTerminal', 'SDBToken')},
     ),
