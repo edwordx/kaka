@@ -1,4 +1,4 @@
-{% extends "lkl/base.html" %}
+{% extends "kk/base.html" %}
 {% load staticfiles %}
 
 {% block header_title  %}
@@ -9,73 +9,28 @@
 
 
 <div class="weui-grids">
-    <a href="{% url 'user_info' %}" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/xinxi.png" %}" alt="">
-        </div>
-        <p class="weui-grid__label">
-            我的信息
-        </p>
-    </a>
-    <a href="{% url 'tixian_list' %}" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/biji.png" %}" alt="">
-        </div>
-        <p class="weui-grid__label">
-            提现记录
-        </p>
-    </a>
+
     <a href="javascript:;" class="weui-grid js_grid" id="invite_code">
         <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/dianhua.png" %}" alt="">
+            <img src="{% static "/kk/icon/dianhua.png" %}" alt="">
         </div>
         <p class="weui-grid__label">
             邀请码
         </p>
     </a>
+
     <a href="{% url 'bind_wx_page' %}" class="weui-grid js_grid">
         <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/wx.jpg" %}" alt="">
+            <img src="{% static "/kk/icon/wx.jpg" %}" alt="">
         </div>
         <p class="weui-grid__label">
             绑定微信
         </p>
     </a>
-    <a href="{% url 'xyf_home' %}" class="weui-grid js_grid">
+
+    <a href="{% url 'vuser_logout' %}" class="weui-grid js_grid">
         <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/sosuo.jpg" %}" alt="">
-        </div>
-        <p class="weui-grid__label">
-            星星
-        </p>
-    </a>
-    <a href="{% url 'friend_list' %}" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/haoyou.png" %}" alt="">
-        </div>
-        <p class="weui-grid__label">
-            我的朋友
-        </p>
-    </a>
-    <a href="{% url 'pos_list' %}" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/pos.png" %}" alt="">
-        </div>
-        <p class="weui-grid__label">
-            我的终端
-        </p>
-    </a>
-    <a href="javascript:;" class="weui-grid js_grid" id="bind_pos">
-        <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/gongsi.png" %}" alt="">
-        </div>
-        <p class="weui-grid__label">
-            绑定
-        </p>
-    </a>
-    <a href="{% url 'user_logout' %}" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-            <img src="{% static "/lkl/icon/tuichu.jpg" %}" alt="">
+            <img src="{% static "/kk/icon/tuichu.jpg" %}" alt="">
         </div>
         <p class="weui-grid__label">
             退出
@@ -87,7 +42,7 @@
 {% endblock %}
 
 {% block footer_js_extra %}
-<script src="{% static "/lkl/js/clipboard.min.js" %}"></script>
+<script src="{% static "/kk/js/clipboard.min.js" %}"></script>
 <script>
     var clipboard = new Clipboard('#invite_code', {
         text: function() {
@@ -97,12 +52,6 @@
     $("#invite_code").on("click",function() {
         $.alert("您的邀请码是{{request.user.userprofile.code}}", "已复制邀请码");
     });
-    $("#bind_pos").on("click", function() {
-        $.confirm("请务必填写自己的终端号，后续会严格校验。如果恶意绑定，后果自负！", "警告",
-        function() {
-            $(location).attr('href', '{% url "bind_pos" %}');
-        }
-        );
-    });
+
 </script>
 {% endblock %}

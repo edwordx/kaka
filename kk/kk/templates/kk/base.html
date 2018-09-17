@@ -17,10 +17,10 @@
     <meta name="format-detection" content="telephone=no">
     <!-- load css -->
     {% block header_css %}
-    <link rel="stylesheet" href="{% static "/lkl/css/weui.min.css" %}">
-    <link rel="stylesheet" href="{% static "/lkl/css/other.css" %}">
-    <link rel="stylesheet" href="{% static "/lkl/css/demos.css" %}">
-    <link rel="stylesheet" href="{% static "/lkl/css/jquery-weui.min.css" %}">
+    <link rel="stylesheet" href="{% static "/kk/css/weui.min.css" %}">
+    <link rel="stylesheet" href="{% static "/kk/css/other.css" %}">
+    <link rel="stylesheet" href="{% static "/kk/css/demos.css" %}">
+    <link rel="stylesheet" href="{% static "/kk/css/jquery-weui.min.css" %}">
     {% endblock %}
     <style type="text/css">
     {% block header_css_extra %}
@@ -52,7 +52,7 @@
 
 
 {% block menu %}
-{% include "lkl/menu.html" %}
+{% include "kk/menu.html" %}
 {% endblock %}
 
 
@@ -61,10 +61,10 @@
 {% endblock %}
 
 {% block footer_base_js %}
-<script src="{% static "/lkl/js/jquery.min.js" %}"></script>
-<script src="{% static "/lkl/js/jquery-weui.min.js" %}"></script>
-<script src="{% static "/lkl/js/fastclick.js" %}"></script>
-<script src="{% static "/lkl/iconfont/iconfont.js" %}"></script>
+<script src="{% static "/kk/js/jquery.min.js" %}"></script>
+<script src="{% static "/kk/js/jquery-weui.min.js" %}"></script>
+<script src="{% static "/kk/js/fastclick.js" %}"></script>
+<script src="{% static "/kk/iconfont/iconfont.js" %}"></script>
 <script>
     function GetUrlRelativePath()
 　　{
@@ -84,20 +84,20 @@
   });
   $(function() {
     // $.alert(window.location.href);
-    // $.alert('{% url "user_home" %}');
+    // $.alert('{% url "vuser_home" %}');
     // $.alert(GetUrlRelativePath());
     var cls = "weui-bar__item--on";
     var url = GetUrlRelativePath();
-    var user_home = "{% url 'jk_home' %}";
-    var user_news = "{% url 'user_news' %}";
+    var user_home = "{% url 'vuser_home' %}";
+    var user_news = "{% url 'vuser_news' %}";
     if(url == user_home){
-　　　　$("#user_home").addClass(cls);
+　　　　$("#vuser_home").addClass(cls);
 　　}
     else if(url == user_news){
-　　　　$("#user_news").addClass(cls);
+　　　　$("#vuser_news").addClass(cls);
 　　}
     else {
-        $("#user_account").addClass(cls);
+        $("#vuser_account").addClass(cls);
     }
   });
 </script>

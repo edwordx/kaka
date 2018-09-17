@@ -162,13 +162,13 @@ LOGGING = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': "/var/log/lakala/debug.log",
+            'filename': "/var/log/kaka/debug.log",
             'level': 'ERROR',
         },
         'statistics_handler': {
             'class': 'logging.FileHandler',
             'formatter': 'statistics',
-            'filename': "/var/log/lakala/statistics.log",
+            'filename': "/var/log/kaka/statistics.log",
             'level': 'DEBUG',
         }
     },

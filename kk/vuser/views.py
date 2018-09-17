@@ -17,6 +17,23 @@ from kk import config, wx_utils
 logger = logging.getLogger('statistics')
 
 
+@login_required
+def home(request):
+    """
+    用户首页
+    """
+    data = {}
+    return render(request, "kk/home.html", data)
+
+
+def news(request):
+    """
+    资讯页
+    """
+    data = {}
+    return render(request, "kk/news.html", data)
+
+
 def account(request):
     """
     账户页

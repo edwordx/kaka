@@ -1,7 +1,7 @@
-{% extends "lkl/base.html" %} {% load staticfiles %}
+{% extends "kk/base.html" %} {% load staticfiles %}
 
 {% block container %}
-<form method="post" action="{% url 'user_login' %}">
+<form method="post" action="{% url 'vuser_login' %}">
     {% csrf_token %}
     <div class="weui-cells weui-cells_form">
 
@@ -55,7 +55,7 @@
 <div class="weui-footer">
     <p class="weui-footer__text">没有账号？</p>
     <p class="weui-footer__links">
-        <a href="{% url 'user_register' %}" class="weui-footer__link">注册</a>
+        <a href="{% url 'vuser_register' %}" class="weui-footer__link">注册</a>
     </p>
 </div>
 
