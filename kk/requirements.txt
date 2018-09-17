@@ -1,0 +1,16 @@
+django==1.11
+mysql-python
+redis
+uwsgi
+python-memcached
+requests
+beautifulsoup4
+werobot
+django-suit
+django_easy_select2
+django-simple-captcha
+selenium
+pytesseract
+django-admin-view-permission
+qcloudsms_py
+raven

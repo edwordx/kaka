@@ -1,0 +1,40 @@
+# python bytecode
+*.py[cod]
+
+# settings
+settings_local.py
+manage_local.py
+config.py
+settings_pro.py
+wx_utils.py
+wx_pay.py
+help.txt
+back.sh
+
+# Vim swap files
+*.swp
+
+# Sphinx files
+docs/_build/
+
+# Log files
+*.log
+
+# Coverage files
+.coverage
+
+# Tmp file
+*~
+
+# Local configure file for lzc
+lzc*
+
+# other files
+desktop.ini
+*.cfg
+.idea
+*.rdb
+
+# data
+data
+*.sqlite3

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+{% block header %}
+<head>
+    <meta charset="UTF-8">
+    {% block header_title  %}
+    <title>卡拉慧</title>
+    {% endblock %}
+
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <!-- load css -->
+    {% block header_css %}
+    <link rel="stylesheet" href="{% static "/lkl/css/weui.min.css" %}">
+    <link rel="stylesheet" href="{% static "/lkl/css/other.css" %}">
+    <link rel="stylesheet" href="{% static "/lkl/css/demos.css" %}">
+    <link rel="stylesheet" href="{% static "/lkl/css/jquery-weui.min.css" %}">
+    {% endblock %}
+    <style type="text/css">
+    {% block header_css_extra %}
+    {% endblock %}
+    </style>
+    <style type="text/css">
+    .icon {
+       width: 1em; height: 1em;
+       vertical-align: -0.15em;
+       fill: cornflowerblue;
+       overflow: hidden;
+    }
+    .weui-tabbar__item.weui-bar__item--on .weui-tabbar__label {
+        color: cornflowerblue;
+    }
+    .weui-tabbar {
+        position: fixed;
+    }
+    </style>
+</head>
+{% endblock %}
+
+<body>
+
+
+{% block container  %}
+{% endblock %}
+
+
+
+{% block menu %}
+{% include "lkl/menu.html" %}
+{% endblock %}
+
+
+</body>
+{% block data_js %}
+{% endblock %}
+
+{% block footer_base_js %}
+<script src="{% static "/lkl/js/jquery.min.js" %}"></script>
+<script src="{% static "/lkl/js/jquery-weui.min.js" %}"></script>
+<script src="{% static "/lkl/js/fastclick.js" %}"></script>
+<script src="{% static "/lkl/iconfont/iconfont.js" %}"></script>
+<script>
+    function GetUrlRelativePath()
+　　{
+　　　　var url = document.location.toString();
+　　　　var arrUrl = url.split("//");
+
+　　　　var start = arrUrl[1].indexOf("/");
+　　　　var relUrl = arrUrl[1].substring(start);
+
+　　　　if(relUrl.indexOf("?") != -1){
+　　　　　　relUrl = relUrl.split("?")[0];
+　　　　}
+　　　　return relUrl;
+　　}
+  $(function() {
+    FastClick.attach(document.body);
+  });
+  $(function() {
+    // $.alert(window.location.href);
+    // $.alert('{% url "user_home" %}');
+    // $.alert(GetUrlRelativePath());
+    var cls = "weui-bar__item--on";
+    var url = GetUrlRelativePath();
+    var user_home = "{% url 'jk_home' %}";
+    var user_news = "{% url 'user_news' %}";
+    if(url == user_home){
+　　　　$("#user_home").addClass(cls);
+　　}
+    else if(url == user_news){
+　　　　$("#user_news").addClass(cls);
+　　}
+    else {
+        $("#user_account").addClass(cls);
+    }
+  });
+</script>
+{% endblock %}
+
+
+{% block footer_js_extra %}
+{% endblock %}
+
+</html>

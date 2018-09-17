@@ -1,0 +1,23 @@
+<!--底部固定导航 开始-->
+<div class="weui-tabbar">
+    <a href="{% url 'jk_home' %}" class="weui-tabbar__item " id="jk_home">
+        <div class="weui-tabbar__icon">
+        <i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home"></use></svg></i>
+        </div>
+        <p class="weui-tabbar__label">首 页</p>
+    </a>
+    <a href="{% url 'user_news' %}" class="weui-tabbar__item " id="user_news">
+        <div class="weui-tabbar__icon">
+        <i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-liebiao"></use></svg></i>
+        </div>
+        <p class="weui-tabbar__label">资 讯</p>
+    </a>
+
+    <a href="{% url 'user_account' %}" class="weui-tabbar__item " id="user_account">
+        <div class="weui-tabbar__icon">
+            <i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-user1"></use></svg></i>
+        </div>
+        <p class="weui-tabbar__label">我 的</p>
+    </a>
+</div>
+<!--底部固定导航 结束-->

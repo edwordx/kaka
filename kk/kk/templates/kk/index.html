@@ -1,0 +1,50 @@
+{% extends "lkl/base.html" %}
+{% load staticfiles %}
+
+{% block header_title %}
+<title>首页</title>
+{% endblock %}
+
+{% block header_css_extra %}
+.juzhong {
+  text-align: center;
+  font-size: 24px;
+  color: cornflowerblue;
+  font-weight: 400;
+  margin: 0 15%;
+}
+.weui-article h1 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: .9em;
+}
+{% endblock %}
+
+{% block container  %}
+
+
+
+<div class="weui-topbar">
+    <h1 class="weui-topbar-title">英雄榜</h1>
+</div>
+
+<div class="juzhong">
+<div class="bd mt40 mb40">
+<div class="weui-cells">
+    {% for user, n in items %}
+
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            {{ user.userprofile.name }}
+          </div>
+          <div class="weui-cell__bd">
+            {{ n }}台
+          </div>
+        </div>
+
+    {% endfor %}
+    </div>
+</div>
+
+</div>
+{% endblock %}

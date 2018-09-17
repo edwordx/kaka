@@ -1,0 +1,80 @@
+{% extends "lkl/base.html" %}
+{% load staticfiles %}
+
+{% block container  %}
+<div class="weui-panel__bd">
+    <a href="javascript:;" class="weui-media-box weui-media-box_appmsg open-popup" data-target="#full">
+        <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="{% static "/lkl/pics/cjwt.jpg" %}">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">常见问题</h4>
+            <p class="weui-media-box__desc">用户经常遇到的问题解答</p>
+        </div>
+    </a>
+</div>
+<div id="full" class='weui-popup__container'>
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal">
+        <header class='demos-header'>
+            <h2 class="demos-second-title">常见问题</h2>
+            <p class="demos-sub-title">by 小卡</p>
+        </header>
+        <article class="weui-article">
+            <section>
+                <section>
+                    <h3>1. 注册需要真实手机和姓名吗？</h3>
+                    <p>
+                        请务必填写真实手机号和真实姓名。注册后不可以修改。手机号用于接受系统各种验证码和通知。真实姓名用于提现时核验，核验不通过无法提现。
+                    </p>
+                </section>
+                <section>
+                    <h3>2. 注册时，邀请码填写什么？</h3>
+                    <p>
+                        目前系统非开放注册的，注册必须有邀请码。邀请码可以填写您的邀请人的注册手机号（容易记，方便邀请别人），或者他的邀请码（隐私保护）。
+                    </p>
+                </section>
+                <section>
+                    <h3>3. 数据显示不正确？</h3>
+                    <p>
+                        系统数据是从2018年2月1日开始的。如果某些状态或者统计需要更早之前的数据，这样的话就显示不正确。
+                    </p>
+                </section>
+                <section>
+                    <h3>4. 邀请别人注册，有什么好处？</h3>
+                    <p>
+                        邀请新人注册，您的分润点和新人分润点的差额会作为奖励给到您。如果新人的分润点没有设置的话，会暂时不结算奖励，等到设置好，会补结算的。
+                    </p>
+                </section>
+                <section>
+                    <h3>5. 结算分润的周期是多少？</h3>
+                    <p>
+                        所有的分润会结算到余额的，结算数据会延迟三天。因为官方系统延迟的原因，我们无法准时拿到数据。还有就是可能有退款的单子，需要等到退款完成。兼顾时效性和准确性，我们统一延迟结算三天。
+                    </p>
+                </section>
+                <section>
+                    <h3>6. 如何提现？为什么要收费？</h3>
+                    <p>
+                        目前满100元的会员权益，就可以申请体现。暂时通过支付宝人工给你打款。后续会改为微信账号自动到账。
+                    </p>
+                    <p>
+                        拉卡拉收取税费8%，微信支付扣税费1%，系统预付款给您会占用我们将近两个月的账期，我们收取1%。一共为10%。如果您的交易量大或者推荐用户多，我们可以调高您的分润点，以弥补您税费的损失。
+                    </p>
+                </section>
+            </section>
+            <a href="javascript:;" class="weui-btn weui-btn_primary close-popup">关闭</a>
+        </article>
+        <br/>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer_js_extra %}
+<script>
+      $(document).on("open", ".weui-popup-modal", function() {
+        console.log("open popup");
+      }).on("close", ".weui-popup-modal", function() {
+        console.log("close popup");
+      });
+</script>
+{% endblock %}
