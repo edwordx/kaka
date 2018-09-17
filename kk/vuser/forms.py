@@ -60,21 +60,17 @@ class RegisterForm(forms.Form):
         return name
 
     def clean_invite_code(self):
-        self.father_user = None
         invite_code = self.cleaned_data["invite_code"]
-        # invite_code = invite_code.strip()
-        # lens = len(invite_code)
-        # if lens not in (6, 32, 11):
-        #     msg = u"邀请码格式不对"
-        #     raise forms.ValidationError(msg)
-        # is_phone = lens == 11
-        # self.father_user = utils.get_user_by_code(invite_code, is_phone)
-        # if not self.father_user:
-        #     msg = u"邀请码不存在"
-        #     raise forms.ValidationError(msg)
-        # elif self.father_user.username == "13300000000":
-        #     msg = u"无权使用顶级邀请码"
-        #     raise forms.ValidationError(msg)
+        invite_code = invite_code.strip()
+        lens = len(invite_code)
+        if lens not in (6, 32, 11):
+            msg = u"邀请码格式不对"
+            raise forms.ValidationError(msg)
+        is_phone = lens == 11
+        self.father_user = utils.get_user_by_code(invite_code, is_phone)
+        if not self.father_user:
+            msg = u"邀请码不存在"
+            raise forms.ValidationError(msg)
         return invite_code
 
     def clean(self):
