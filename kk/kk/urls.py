@@ -12,3 +12,5 @@ urlpatterns = [
     url(r'^vuser/', include('vuser.urls')),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
 ]
+
+handler404 = "kk.views.page_404"
