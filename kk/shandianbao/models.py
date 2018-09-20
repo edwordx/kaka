@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-import uuid
-import hashlib
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -78,3 +77,18 @@ class SDBToken(models.Model):
         db_table = "sdb_token"
         verbose_name = verbose_name_plural = u"凭证"
         ordering = ["-create_time"]
+
+
+@python_2_unicode_compatible
+class SDBPos(models.Model):
+    user = models.ForeignKey(User, verbose_name=u"用户")
+    terminal = models.CharField(u"终端号", max_length=64, unique=True)
+    create_time = models.DateTimeField(u"创建时间", auto_now_add=True)
+    update_time = models.DateTimeField(u"更新时间", auto_now=True)
+
+    class Meta:
+        db_table = "sdb_pos"
+        verbose_name = verbose_name_plural = u"用户POS机"
+
+    def __str__(self):
+        return self.terminal

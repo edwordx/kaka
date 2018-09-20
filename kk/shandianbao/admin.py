@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from django.contrib import admin
-from django import forms
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
-from django.contrib.admin.utils import unquote
-from django.core.exceptions import PermissionDenied
-from django.template.loader import render_to_string
 from easy_select2 import select2_modelform
-from suit.admin import SortableTabularInline
 from . import models
+from . import forms as fms
 
 
 @admin.register(models.SDBToken)
@@ -30,3 +23,11 @@ class SDBTerminalAdmin(admin.ModelAdmin):
     list_display = ["id", "terminal", "batch", "company", "pos_type", "pos_version", "agent", "agent_name", "bind_status", "activate_status", "bind_merchant", "bind_time", "update_time"]
     fields = ["terminal", "batch", "company", "pos_type", "pos_version", "agent", "agent_name", "bind_status", "activate_status", "bind_merchant", "bind_time"]
     search_fields = ["terminal", "bind_status", "activate_status", "bind_time"]
+
+
+@admin.register(models.SDBPos)
+class SDBPosAdmin(admin.ModelAdmin):
+    form = fms.AdminSDBPosForm
+    list_display = ["id", "user", "terminal", "create_time", "update_time"]
+    fields = ["user", "terminal"]
+    search_fields = ["terminal", "user__username"]

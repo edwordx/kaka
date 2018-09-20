@@ -5,3 +5,21 @@ from . import dbutils
 from easy_select2 import apply_select2
 
 
+class AdminSDBPosForm(forms.ModelForm):
+    """
+    判断terminal值
+    """
+    class Meta:
+        model = models.SDBPos
+        fields = ["user", "terminal"]
+        widgets = {
+            'user': apply_select2(forms.Select),
+        }
+
+    def clean_stp(self):
+        terminal = self.cleaned_data["terminal"]
+        objs = models.SDBTerminal.objects.filter(terminal=terminal)
+        if not objs:
+            msg = "terminal error"
+            raise forms.ValidationError(msg)
+        return terminal
