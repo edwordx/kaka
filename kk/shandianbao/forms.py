@@ -20,6 +20,6 @@ class AdminSDBPosForm(forms.ModelForm):
         terminal = self.cleaned_data["terminal"]
         objs = models.SDBTerminal.objects.filter(terminal=terminal)
         if not objs:
-            msg = "terminal error"
+            msg = u"终端号不存在"
             raise forms.ValidationError(msg)
         return terminal
