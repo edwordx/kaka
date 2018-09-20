@@ -16,7 +16,7 @@ class AdminSDBPosForm(forms.ModelForm):
             'user': apply_select2(forms.Select),
         }
 
-    def clean_stp(self):
+    def clean_terminal(self):
         terminal = self.cleaned_data["terminal"]
         objs = models.SDBTerminal.objects.filter(terminal=terminal)
         if not objs:
