@@ -39,7 +39,9 @@ def add_user_terminals(user, start, end):
     alist = []
     user_terminals = models.SDBPos.objects.filter(user=user)
     used_tids = {obj.terminal for obj in user_terminals}
-    tids = range(start, end + 1)
+    max_value = max(start, end)
+    min_value = min(start, end)
+    tids = range(min_value, max_value + 1)
     ok_tids = list(set(tids) - used_tids)
     terminal_objs = models.SDBTerminal.objects.filter(terminal__in=ok_tids)
     for terminal_obj in terminal_objs:
