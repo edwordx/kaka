@@ -35,7 +35,7 @@ admin.site.register(User, MyUserAdmin)
 
 @admin.register(models.UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ["user", "namex", "fatherx", "phone", "sex", "code", "create_time"]
+    list_display = ["user", "namex", "fatherx", "phone", "sex", "code", "create_time", "terminals"]
     fields = ["user", "phone", "name", "sex", "is_vip", "code", "father"]
     search_fields = ["name", "phone"]
     all_fields = [f.name for f in models.UserProfile._meta.get_fields()]
@@ -60,6 +60,11 @@ class UserProfileAdmin(admin.ModelAdmin):
     namex.allow_tags = True
     namex.short_description = u'姓名'
     namex.admin_order_field = "name"
+
+    def terminals(self, obj):
+        return u'<a href="/sdb/add_user_terminals/?user_id=%s" target="_blank">添加终端</a>' % obj.user.id
+    terminals.allow_tags = True
+    terminals.short_description = u'添加终端'
 
 
 @admin.register(models.WXUser)

@@ -12,7 +12,7 @@ from kk import config
 rclient = redis.Redis(**config.REDIS_DATA)
 
 
-def get_user_by_code(code, is_phone):
+def get_vuser_by_code(code, is_phone):
     if is_phone:
         objs = UserProfile.objects.filter(phone=code)
     else:
@@ -26,6 +26,14 @@ def get_user_by_code(code, is_phone):
 def get_user_by_username(username):
     try:
         user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        user = None
+    return user
+
+
+def get_user_by_id(user_id):
+    try:
+        user = User.objects.get(id=user_id)
     except User.DoesNotExist:
         user = None
     return user

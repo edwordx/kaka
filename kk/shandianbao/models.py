@@ -92,3 +92,14 @@ class SDBPos(models.Model):
 
     def __str__(self):
         return self.terminal
+
+
+# @python_2_unicode_compatible
+# class SDBPosProxy(SDBPos):
+
+#     class Meta:
+#         proxy = True
+#         verbose_name = verbose_name_plural = u"用户POS机"
+
+#     def __str__(self):
+#         return self.terminal
