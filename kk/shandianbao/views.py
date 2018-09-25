@@ -31,3 +31,23 @@ def add_user_terminals(request):
         if target_user and start and end:
             dbutils.add_user_terminals(target_user, start, end)
         return redirect("/admin/shandianbao/sdbpos/?user_id=%s" % user_id)
+
+
+@staff_member_required
+def add_user_terminals_agent(request):
+    """
+    通过代理商ID添加终端
+    """
+    if request.method == 'GET':
+        user_id = request.GET.get('user_id', "")
+        user_id = int(user_id) if user_id.isdigit() else 0
+        target_user = get_user_by_id(user_id)
+        return render(request, 'admin/add_user_terminals_agent.html', {'target_user': target_user})
+    else:
+        user_id = request.POST.get('user_id', "")
+        user_id = int(user_id) if user_id.isdigit() else 0
+        target_user = get_user_by_id(user_id)
+        agent = request.POST.get('agent', "")
+        if target_user and agent:
+            dbutils.add_user_terminals_agent(target_user, agent)
+        return redirect("/admin/shandianbao/sdbpos/?user_id=%s" % user_id)

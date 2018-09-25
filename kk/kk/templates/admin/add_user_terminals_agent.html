@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+{% load admin_static %}
+
+{% block content %}
+{{ block.super }}
+
+
+<div class="results">
+<form action="{% url 'add_user_terminals_agent' %}" method="post">
+    {% csrf_token %}
+<div>
+    <label >用户名：{{ target_user.userprofile.name }}</label>
+</div>
+<br/>
+<div>
+    <label>代理商号：</label>
+    <input type="text" name="agent" value="" required="" class="vTextField" maxlength="20">
+</div>
+
+<br/>
+
+<div>
+    <input type="hidden" name="user_id" value="{{ target_user.id }}">
+    <input type="submit" value="提交">
+</div>
+
+</form>
+</div>
+
+{% endblock %}

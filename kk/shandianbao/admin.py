@@ -22,7 +22,7 @@ class SDBTradeAdmin(admin.ModelAdmin):
 class SDBTerminalAdmin(admin.ModelAdmin):
     list_display = ["id", "terminal", "batch", "company", "pos_type", "pos_version", "agent", "agent_name", "bind_status", "activate_status", "bind_merchant", "bind_time", "update_time"]
     fields = ["terminal", "batch", "company", "pos_type", "pos_version", "agent", "agent_name", "bind_status", "activate_status", "bind_merchant", "bind_time"]
-    search_fields = ["terminal", "bind_status", "activate_status", "bind_time"]
+    search_fields = ["terminal", "bind_status", "activate_status", "bind_time", "agent"]
 
 
 @admin.register(models.SDBPos)

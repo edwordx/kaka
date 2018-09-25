@@ -52,3 +52,21 @@ def add_user_terminals(user, start, end):
         alist.append(obj)
     if alist:
         models.SDBPos.objects.bulk_create(alist)
+
+
+def add_user_terminals_agent(user, agent):
+    alist = []
+    user_terminals = models.SDBPos.objects.filter(user=user)
+    used_tids = {obj.terminal for obj in user_terminals}
+    terminal_objs = models.SDBTerminal.objects.filter(agent=agent)
+    for terminal_obj in terminal_objs:
+        terminal = terminal_obj.terminal
+        if terminal in used_tids:
+            continue
+        obj = models.SDBPos(
+            terminal=terminal,
+            user=user,
+        )
+        alist.append(obj)
+    if alist:
+        models.SDBPos.objects.bulk_create(alist)
