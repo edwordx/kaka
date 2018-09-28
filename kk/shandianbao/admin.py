@@ -36,6 +36,6 @@ class SDBPosAdmin(admin.ModelAdmin):
 @admin.register(models.SDBFenRun)
 class SDBFenRunAdmin(admin.ModelAdmin):
     form = select2_modelform(models.SDBFenRun)
-    list_display = ["id", "user", "hardware_point", "point", "profit", "tax", "create_time", "update_time"]
-    fields = ["user", "hardware_point", "point", "profit", "tax"]
+    list_display = ["id", "user", "hardware_point", "point", "hardware_point_yun", "point_yun", "hardware_point_yin", "point_yin", "hardware_point_wx", "point_wx", "profit", "tax", "create_time", "update_time"]
+    fields = ["user", "hardware_point", "point", "hardware_point_yun", "point_yun", "hardware_point_yin", "point_yin", "hardware_point_wx", "point_wx", "profit", "tax"]
     search_fields = ["user__username"]
