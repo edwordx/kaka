@@ -170,7 +170,7 @@ class SDBUserRMB(models.Model):
 
     class Meta:
         db_table = "sdb_user_rmb"
-        verbose_name = verbose_name_plural = u"金用户金钱表"
+        verbose_name = verbose_name_plural = u"用户金钱表"
         ordering = ["-rmb", "-child_rmb"]
 
     def __str__(self):
@@ -212,7 +212,7 @@ class SDBProfit(models.Model):
 
     class Meta:
         db_table = "sdb_user_profit"
-        verbose_name = verbose_name_plural = u"金用户获利表"
+        verbose_name = verbose_name_plural = u"用户获利表"
         ordering = ["-pay_time"]
 
     def __str__(self):
