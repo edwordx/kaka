@@ -70,3 +70,36 @@ def add_user_terminals_agent(user, agent):
         alist.append(obj)
     if alist:
         models.SDBPos.objects.bulk_create(alist)
+
+
+def get_user_by_terminal(terminal):
+    """
+    通过终端号获取用户
+    """
+    try:
+        obj = models.SDBPos.objects.get(terminal=terminal)
+        user = obj.user
+    except Exception:
+        user = None
+    return user
+
+
+# rmb operation
+def add_sdbuserrmb_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.rmb += rmb
+        obj.save()
+
+
+def sub_sdbuserrmb_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.rmb -= rmb
+        obj.save()
+
+
+def get_sdbuserrmb_num(user):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+    return obj.rmb
