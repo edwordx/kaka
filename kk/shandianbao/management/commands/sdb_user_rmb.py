@@ -50,7 +50,7 @@ class Command(BaseCommand):
         default_user = None
         # SDBTrade
         used_trans_ids = set(models.SDBProfit.objects.values_list("trans_id", flat=True))
-        objs = models.SDBTrade.objects.filter(card_type=u"贷记卡").filter(return_code="00").filter(trade_type=u"刷卡支付收款")
+        objs = models.SDBTrade.objects.filter(card_type=u"贷记卡").filter(return_code="00").filter(trade_type=u"刷卡支付收款").filter(business_type=u"非VIP交易")
         for obj in objs:
             if obj.trans_id in used_trans_ids:
                 continue
