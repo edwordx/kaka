@@ -217,3 +217,52 @@ class SDBProfit(models.Model):
 
     def __str__(self):
         return self.trans_id
+
+
+class SDBChildProfit(models.Model):
+    """
+    推荐获利表
+    """
+    user = models.ForeignKey(User, verbose_name=u"用户")
+    rmb = models.IntegerField(u"利润金额(分)", default=0)
+    diff_point = models.CharField(u"费率差值", max_length=50, blank=True)
+    point_type = models.CharField(u"费率类型", choices=POINT_TYPE_CHOICE, max_length=10)
+    # from fenrun
+    point = models.CharField(u"费率", max_length=50, blank=True)
+    hardware_point = models.CharField(u"硬件费率", max_length=50, blank=True)
+    profit = models.IntegerField(u"分润比例")
+    tax = models.IntegerField(u"税点比例")
+    # from trade
+    trans_id = models.CharField(u"流水号", max_length=64, unique=True)
+    merchant = models.CharField(u"商户号", max_length=64)
+    trade_date = models.CharField(u"交易日期", max_length=64)
+    trade_rmb = models.CharField(u"交易金额（元）", max_length=64)
+    trade_type = models.CharField(u"交易类型", max_length=64)
+    trade_status = models.CharField(u"交易状态", max_length=64)
+    card_code = models.CharField(u"卡号", max_length=64)
+    card_type = models.CharField(u"卡类型", max_length=64)
+    return_code = models.CharField(u"返回码", max_length=64)
+    return_desc = models.CharField(u"返回码描述", max_length=64)
+    terminal = models.CharField(u"终端号", max_length=64)
+    agent_level = models.CharField(u"代理商等级", max_length=64)
+    agent = models.CharField(u"代理商号", max_length=64)
+    business_type = models.CharField(u"业务类型", max_length=64)
+    # 状态和时间
+    status = models.CharField(u"订单状态", choices=STATUS_CHOICE, max_length=10, default="UP")
+    create_time = models.DateTimeField(u"创建时间", auto_now_add=True)
+    pay_time = models.DateTimeField(u"分红时间", null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
+@python_2_unicode_compatible
+class SDBChildOneProfit(SDBChildProfit):
+
+    class Meta:
+        db_table = "sdb_child_one_profit"
+        verbose_name = verbose_name_plural = u"推荐获利表（一级）"
+        ordering = ["-pay_time"]
+
+    def __str__(self):
+        return self.trans_id

@@ -103,3 +103,24 @@ def get_sdbuserrmb_num(user):
     with transaction.atomic():
         obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
     return obj.rmb
+
+
+# child_rmb operation
+def add_sdbuserrmb_child_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.child_rmb += rmb
+        obj.save()
+
+
+def sub_sdbuserrmb_child_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.child_rmb -= rmb
+        obj.save()
+
+
+def get_sdbuserrmb_child_num(user):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+    return obj.child_rmb

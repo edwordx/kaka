@@ -94,3 +94,12 @@ class SDBProfitAdmin(admin.ModelAdmin):
     readonly_fields = fields
     search_fields = ["user__username", "trans_id", "terminal", "trade_date", "merchant"]
     list_filter = ["point_type"]
+
+
+@admin.register(models.SDBChildOneProfit)
+class SDBChildOneProfit(admin.ModelAdmin):
+    list_display = ["id", "user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
+    fields = ["user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
+    readonly_fields = fields
+    search_fields = ["user__username", "trans_id", "terminal", "trade_date", "merchant"]
+    list_filter = ["point_type"]
