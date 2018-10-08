@@ -104,7 +104,7 @@ class SDBPos(models.Model):
 
     class Meta:
         db_table = "sdb_pos"
-        verbose_name = verbose_name_plural = u"用户POS机"
+        verbose_name = verbose_name_plural = u"用户终端"
 
     def __str__(self):
         return self.terminal
@@ -151,7 +151,7 @@ class SDBFenRun(models.Model):
 
     class Meta:
         db_table = "sdb_fenrun"
-        verbose_name = verbose_name_plural = u"分润设置"
+        verbose_name = verbose_name_plural = u"用户分润"
 
     def __str__(self):
         return self.point
@@ -172,7 +172,7 @@ class SDBUserRMB(models.Model):
 
     class Meta:
         db_table = "sdb_user_rmb"
-        verbose_name = verbose_name_plural = u"用户金钱表"
+        verbose_name = verbose_name_plural = u"用户金钱"
         ordering = ["-rmb", "-child_rmb"]
 
     def __str__(self):
