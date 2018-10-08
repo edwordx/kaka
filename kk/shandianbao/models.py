@@ -164,7 +164,9 @@ class SDBUserRMB(models.Model):
     user = models.OneToOneField(User)
     rmb = models.IntegerField(u"金额(分)")
     is_auto = models.BooleanField(u"自动到账", default=False)
-    child_rmb = models.IntegerField(u"推荐金额(分)", default=0)
+    child_rmb = models.IntegerField(u"推荐（一级）金额(分)", default=0)
+    child_two_rmb = models.IntegerField(u"推荐（二级）金额(分)", default=0)
+    child_three_rmb = models.IntegerField(u"推荐（三级）金额(分)", default=0)
     create_time = models.DateTimeField(u"创建时间", auto_now_add=True)
     update_time = models.DateTimeField(u"更新时间", auto_now=True)
 
@@ -262,6 +264,30 @@ class SDBChildOneProfit(SDBChildProfit):
     class Meta:
         db_table = "sdb_child_one_profit"
         verbose_name = verbose_name_plural = u"推荐获利表（一级）"
+        ordering = ["-pay_time"]
+
+    def __str__(self):
+        return self.trans_id
+
+
+@python_2_unicode_compatible
+class SDBChildTwoProfit(SDBChildProfit):
+
+    class Meta:
+        db_table = "sdb_child_two_profit"
+        verbose_name = verbose_name_plural = u"推荐获利表（二级）"
+        ordering = ["-pay_time"]
+
+    def __str__(self):
+        return self.trans_id
+
+
+@python_2_unicode_compatible
+class SDBChildThreeProfit(SDBChildProfit):
+
+    class Meta:
+        db_table = "sdb_child_three_profit"
+        verbose_name = verbose_name_plural = u"推荐获利表（三级）"
         ordering = ["-pay_time"]
 
     def __str__(self):

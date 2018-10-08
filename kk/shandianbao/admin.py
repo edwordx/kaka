@@ -51,8 +51,8 @@ class SDBFenRunAdmin(admin.ModelAdmin):
 @admin.register(models.SDBUserRMB)
 class SDBUserRMBAdmin(admin.ModelAdmin):
     form = select2_modelform(models.SDBUserRMB)
-    list_display = ["user", "nickname", "rmb", "child_rmb", "is_auto", "create_time", "update_time"]
-    fields = ["user", "rmb", "child_rmb", "is_auto"]
+    list_display = ["user", "nickname", "rmb", "child_rmb", "child_two_rmb", "child_three_rmb", "is_auto", "create_time", "update_time"]
+    fields = ["user", "rmb", "child_rmb", "child_two_rmb", "child_three_rmb", "is_auto"]
     search_fields = ["user__username"]
     readonly_fields = fields
     list_filter = ["is_auto"]
@@ -97,7 +97,25 @@ class SDBProfitAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.SDBChildOneProfit)
-class SDBChildOneProfit(admin.ModelAdmin):
+class SDBChildOneProfitAdmin(admin.ModelAdmin):
+    list_display = ["id", "user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
+    fields = ["user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
+    readonly_fields = fields
+    search_fields = ["user__username", "trans_id", "terminal", "trade_date", "merchant"]
+    list_filter = ["point_type"]
+
+
+@admin.register(models.SDBChildTwoProfit)
+class SDBChildTwoProfitAdmin(admin.ModelAdmin):
+    list_display = ["id", "user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
+    fields = ["user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
+    readonly_fields = fields
+    search_fields = ["user__username", "trans_id", "terminal", "trade_date", "merchant"]
+    list_filter = ["point_type"]
+
+
+@admin.register(models.SDBChildThreeProfit)
+class SDBChildThreeProfitAdmin(admin.ModelAdmin):
     list_display = ["id", "user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
     fields = ["user", "rmb", "diff_point", "point_type", "point", "hardware_point", "profit", "tax", "trans_id", "merchant", "trade_date", "trade_rmb", "trade_type", "trade_status", "card_code", "card_type", "return_code", "return_desc", "terminal", "agent_level", "agent", "business_type", "status", "create_time", "pay_time"]
     readonly_fields = fields
