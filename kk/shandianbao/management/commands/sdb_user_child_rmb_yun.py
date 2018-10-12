@@ -49,7 +49,7 @@ class Command(BaseCommand):
         print now
         default_user = None
         # SDBTrade
-        objs = models.SDBTrade.objects.filter(card_type=u"云闪付支付收款").filter(return_code="00").filter(trade_type=u"刷卡支付收款").filter(business_type=u"非VIP交易")
+        objs = models.SDBTrade.objects.filter(card_type=u"贷记卡").filter(return_code="00").filter(trade_type=u"云闪付支付收款").filter(business_type=u"非VIP交易")
         # SDBChildOneProfit
         one_ids = set(models.SDBChildOneProfit.objects.values_list("trans_id", flat=True))
         two_ids = set(models.SDBChildTwoProfit.objects.values_list("trans_id", flat=True))
