@@ -55,6 +55,9 @@ class Command(BaseCommand):
         two_ids = set(models.SDBChildTwoProfit.objects.values_list("trans_id", flat=True))
         three_ids = set(models.SDBChildThreeProfit.objects.values_list("trans_id", flat=True))
         for obj in objs:
+            trade_rmb = Decimal(obj.trade_rmb)
+            if trade_rmb > 1000:
+                continue
             adatetime = utils.string_to_datetime(obj.trade_date[:10], format_str="%Y-%m-%d")
             adate = adatetime.date()
             if start_date <= adate <= end_date:

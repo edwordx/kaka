@@ -54,6 +54,9 @@ class Command(BaseCommand):
         for obj in objs:
             if obj.trans_id in used_trans_ids:
                 continue
+            trade_rmb = Decimal(obj.trade_rmb)
+            if trade_rmb > 1000:
+                continue
             adatetime = utils.string_to_datetime(obj.trade_date[:10], format_str="%Y-%m-%d")
             adate = adatetime.date()
             if start_date <= adate <= end_date:
