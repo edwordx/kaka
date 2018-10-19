@@ -26,3 +26,8 @@ def get_wx_user_by_openid(openid):
         return objs[0]
     else:
         return None
+
+
+def get_user_pos(user):
+    poses = models.UserPos.objects.filter(user=user).values_list("code", flat=True)
+    return list(poses)

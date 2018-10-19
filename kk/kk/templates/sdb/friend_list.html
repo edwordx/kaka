@@ -1,0 +1,67 @@
+{% extends "kk/base.html" %} {% load staticfiles %}
+
+{% block header_title  %}
+    <title>代理管理</title>
+{% endblock %}
+
+{% block container %}
+
+<div class="weui-topbar">
+    <h1 class="weui-topbar-title">我的代理</h1>
+    <a href="{% url 'vuser_account' %}"  class="weui-topbar-back"><i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zuojiantou"></use></svg></i></a>
+</div>
+
+<div class="bd mt40 mb40">
+
+<div class="weui-tab">
+
+<div class="weui-tab__bd">
+    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+        <div class="weui-cells">
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+            姓名
+            </div>
+            <div class="weui-cell__bd">
+            总量
+            </div>
+            <div class="weui-cell__bd">
+            激活
+            </div>
+            <div class="weui-cell__bd">
+            时间
+            </div>
+        </div>
+
+        {% for obj, num in friends %}
+            <div class="weui-cell">
+              <div class="weui-cell__bd">
+               <a href="#">{{obj.name}}</a>
+              </div>
+              <div class="weui-cell__bd">
+                {{num.0}}
+              </div>
+              <div class="weui-cell__bd">
+                {{num.1}}
+              </div>
+              <div class="weui-cell__bd">
+                {{obj.create_time| date:"Ymd"}}
+              </div>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+
+
+{% endblock %}
+
+{% block footer_js_extra %}
+
+
+{% endblock %}

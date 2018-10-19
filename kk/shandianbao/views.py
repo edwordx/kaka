@@ -51,3 +51,17 @@ def add_user_terminals_agent(request):
         if target_user and agent:
             dbutils.add_user_terminals_agent(target_user, agent)
         return redirect("/admin/shandianbao/sdbpos/?user_id=%s" % user_id)
+
+
+@login_required
+def friend_list(request):
+    friends = list(request.user.children.all())
+    friends.sort(key=lambda x: x.create_time)
+    pos_status_list = []
+    for obj in friends:
+        poses = dbutils.get_sdb_pos(obj.user)
+        jihuo = dbutils.get_pos_jihuo_num(poses)
+        pos_status_list.append((len(poses), jihuo))
+    friends_res = zip(friends, pos_status_list)
+    data = {"friends": friends_res}
+    return render(request, "sdb/friend_list.html", data)
