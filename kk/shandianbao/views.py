@@ -65,3 +65,21 @@ def friend_list(request):
     friends_res = zip(friends, pos_status_list)
     data = {"friends": friends_res}
     return render(request, "sdb/friend_list.html", data)
+
+
+@login_required
+def terminal_index(request):
+    data = {}
+    return render(request, "sdb/terminal_index.html", data)
+
+
+@login_required
+def trade_index(request):
+    data = {}
+    return render(request, "sdb/trade_index.html", data)
+
+
+@login_required
+def fenrun_index(request):
+    data = {}
+    return render(request, "sdb/fenrun_index.html", data)

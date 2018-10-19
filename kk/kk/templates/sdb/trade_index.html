@@ -1,0 +1,39 @@
+{% extends "kk/base.html" %}
+{% load staticfiles %}
+
+{% block header_title  %}
+    <title>交易管理</title>
+{% endblock %}
+
+{% block container  %}
+
+
+<div class="weui-grids">
+
+    <a href="javascript:;" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <img src="{% static "/kk/icon/pos.png" %}" alt="">
+        </div>
+        <p class="weui-grid__label">
+            交易数据统计
+        </p>
+    </a>
+
+    <a href="javascript:;" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <img src="{% static "/kk/icon/pos.png" %}" alt="">
+        </div>
+        <p class="weui-grid__label">
+            交易明细查询
+        </p>
+    </a>
+
+
+</div>
+
+</div>
+{% endblock %}
+
+{% block footer_js_extra %}
+
+{% endblock %}
