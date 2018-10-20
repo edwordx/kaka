@@ -1,0 +1,61 @@
+{% extends "kk/base.html" %} {% load staticfiles %}
+
+{% block header_title  %}
+    <title>分润管理</title>
+{% endblock %}
+
+{% block container %}
+
+<div class="weui-topbar">
+    <h1 class="weui-topbar-title">分润入账明细</h1>
+    <a href="{% url 'fenrun_index' %}"  class="weui-topbar-back"><i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zuojiantou"></use></svg></i></a>
+</div>
+
+<div class="bd mt40 mb40">
+
+<div class="weui-tab">
+
+<div class="weui-tab__bd">
+    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+        <div class="weui-cells">
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+            分润金额
+            </div>
+            <div class="weui-cell__bd">
+            发放时间
+            </div>
+            <div class="weui-cell__bd">
+            发放状态
+            </div>
+        </div>
+
+        {% for item in items %}
+            <div class="weui-cell">
+              <div class="weui-cell__bd">
+
+              </div>
+              <div class="weui-cell__bd">
+
+              </div>
+              <div class="weui-cell__bd">
+
+              </div>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+
+
+{% endblock %}
+
+{% block footer_js_extra %}
+
+
+{% endblock %}

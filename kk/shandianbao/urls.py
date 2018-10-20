@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^trade_index/$', views.trade_index, name="trade_index"),
     url(r'^trade_list/$', views.trade_list, name="trade_list"),
     url(r'^fenrun_index/$', views.fenrun_index, name="fenrun_index"),
+    url(r'^tixian_list/$', views.tixian_list, name="tixian_list"),
     url(r'^set_fenrun/(?P<child>[0-9]{11})/$', views.set_fenrun, name="set_fenrun"),
 ]

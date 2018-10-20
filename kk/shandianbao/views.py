@@ -177,3 +177,10 @@ def set_fenrun(request, child):
         child_user.sdbfenrun.save()
         return redirect("friend_list")
     return render(request, "sdb/set_fenrun.html", data)
+
+
+@login_required
+def tixian_list(request):
+    objs = []
+    data = {"items": objs}
+    return render(request, "sdb/tixian_list.html", data)
