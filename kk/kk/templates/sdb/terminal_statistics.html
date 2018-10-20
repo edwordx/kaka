@@ -1,0 +1,54 @@
+{% extends "kk/base.html" %} {% load staticfiles %}
+
+{% block header_title  %}
+    <title>终端管理</title>
+{% endblock %}
+
+{% block container %}
+
+<div class="weui-topbar">
+    <h1 class="weui-topbar-title">终端数据统计</h1>
+    <a href="{% url 'terminal_index' %}"  class="weui-topbar-back"><i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zuojiantou"></use></svg></i></a>
+</div>
+
+<div class="bd mt40 mb40">
+
+<div class="weui-form-preview">
+    <div class="weui-form-preview__bd">
+        <label class="weui-form-preview__label">终端数量</label>
+        <span class="weui-form-preview__value">
+        {{ total }}
+        </span>
+    </div>
+
+    <div class="weui-form-preview__bd">
+        <label class="weui-form-preview__label">激活数量</label>
+        <span class="weui-form-preview__value">
+        {{ jihuo }}
+        </span>
+    </div>
+
+    <div class="weui-form-preview__bd">
+        <label class="weui-form-preview__label">未激活数量</label>
+        <span class="weui-form-preview__value">
+        {{ left }}
+        </span>
+    </div>
+
+    <div class="weui-form-preview__bd">
+        <label class="weui-form-preview__label">激活率</label>
+        <span class="weui-form-preview__value">
+        {{ ratio }}
+        </span>
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block footer_js_extra %}
+
+
+{% endblock %}

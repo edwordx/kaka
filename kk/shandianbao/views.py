@@ -77,6 +77,28 @@ def terminal_index(request):
 
 
 @login_required
+def terminal_list(request):
+    objs = dbutils.get_sdb_pos_objs(request.user)
+    data = {"items": objs}
+    return render(request, "sdb/terminal_list.html", data)
+
+
+@login_required
+def terminal_statistics(request):
+    poses = dbutils.get_sdb_pos(request.user)
+    total = len(poses)
+    jihuo = dbutils.get_pos_jihuo_num(poses)
+    left = total - jihuo
+    if total > 0:
+        ratio = jihuo * 0.1 / total
+    else:
+        ratio = 0
+    ratio = "%.2f" % ratio
+    data = {"total": total, "jihuo": jihuo, "left": left, "ratio": ratio}
+    return render(request, "sdb/terminal_statistics.html", data)
+
+
+@login_required
 def trade_index(request):
     data = {}
     return render(request, "sdb/trade_index.html", data)

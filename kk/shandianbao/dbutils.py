@@ -174,6 +174,12 @@ def get_sdb_pos(user):
     return list(poses)
 
 
+def get_sdb_pos_objs(user):
+    poses = get_sdb_pos(user)
+    objs = models.SDBTerminal.objects.filter(terminal__in=poses)
+    return objs
+
+
 def get_pos_jihuo_num(poses):
     num = models.SDBTerminal.objects.filter(terminal__in=poses).filter(activate_status=u"已激活").count()
     return num
