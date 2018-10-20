@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from . import dbutils
+from .models import SDBFenRun
 from vuser.utils import get_user_by_id
+from vuser.utils import rclient, get_user_by_username
 
 
 @login_required
@@ -83,3 +86,64 @@ def trade_index(request):
 def fenrun_index(request):
     data = {}
     return render(request, "sdb/fenrun_index.html", data)
+
+
+@login_required
+def set_fenrun(request, child):
+    data = {}
+    user = request.user
+    # 关系判断
+    child_user = get_user_by_username(child)
+    children = [obj.phone for obj in request.user.children.all()]
+    if not child_user or child not in children:
+        error = [u"用户不存在或者不是您邀请来的"]
+        data.update({"error": error})
+        return render(request, "sdb/set_fenrun.html", data)
+    try:
+        f_child_point = float(child_user.sdbfenrun.point)
+        f_child_point_yun = float(child_user.sdbfenrun.point_yun)
+    except Exception, e:
+        print e
+        error = [u"此用户未设置过分润， 请联系管理员设置"]
+        data.update({"error": error})
+        return render(request, "sdb/set_fenrun.html", data)
+    # 分润
+    if hasattr(user, "sdbfenrun"):
+        f_point = float(user.sdbfenrun.point)
+        f_point_yun = float(user.sdbfenrun.point_yun)
+        point_list = [x[0] for x in SDBFenRun.POINT_CHOICE if float(x[0]) >= f_point]
+        point_yun_list = [x[0] for x in SDBFenRun.POINT_CHOICE_YUN if float(x[0]) >= f_point_yun]
+        child_fenrun = {
+            "point": json.dumps(point_list),
+            "point_yun": json.dumps(point_yun_list)
+        }
+    else:
+        point_list = []
+        point_yun_list = []
+        child_fenrun = {}
+    data.update(child_fenrun)
+
+    if request.method == 'POST':
+        # 操作频繁
+        key = 'sdb_setfenrun_locked_%s' % (user.id)
+        locked = rclient.get(key)
+        if locked:
+            error = [u"操作太频繁"]
+            data.update({"error": error})
+            return render(request, "sdb/set_fenrun.html", data)
+        else:
+            rclient.set(key, True)
+            rclient.expire(key, 10)
+        # 数值判断
+        point = request.POST.get("point")
+        point_yun = request.POST.get("point_yun")
+        if point not in point_list or point_yun not in point_yun_list:
+            error = [u"分润点错误"]
+            data.update({"error": error})
+            return render(request, "sdb/set_fenrun.html", data)
+        # 保存改动
+        child_user.sdbfenrun.point = point
+        child_user.sdbfenrun.point_yun = point_yun
+        child_user.sdbfenrun.save()
+        return redirect("friend_list")
+    return render(request, "sdb/set_fenrun.html", data)

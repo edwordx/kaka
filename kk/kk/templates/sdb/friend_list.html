@@ -37,7 +37,7 @@
         {% for obj, num in friends %}
             <div class="weui-cell">
               <div class="weui-cell__bd">
-               <a href="#">{{obj.name}}</a>
+              <a href="{% url 'set_fenrun' obj.phone %}">{{obj.name}}</a>
               </div>
               <div class="weui-cell__bd">
                 {{num.0}}
