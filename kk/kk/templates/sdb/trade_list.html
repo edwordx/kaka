@@ -1,14 +1,14 @@
 {% extends "kk/base.html" %} {% load staticfiles %}
 
 {% block header_title  %}
-    <title>终端管理</title>
+    <title>交易管理</title>
 {% endblock %}
 
 {% block container %}
 
 <div class="weui-topbar">
-    <h1 class="weui-topbar-title">终端明细</h1>
-    <a href="{% url 'terminal_index' %}"  class="weui-topbar-back"><i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zuojiantou"></use></svg></i></a>
+    <h1 class="weui-topbar-title">交易明细</h1>
+    <a href="{% url 'trade_index' %}"  class="weui-topbar-back"><i><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zuojiantou"></use></svg></i></a>
 </div>
 
 <div class="bd mt40 mb40">
@@ -24,19 +24,19 @@
             终端号
             </div>
             <div class="weui-cell__bd">
-            机具号
+            交易金额
             </div>
             <div class="weui-cell__bd">
-            绑定商户号
+            交易类型
             </div>
             <div class="weui-cell__bd">
-            绑定状态
+            交易卡号
             </div>
             <div class="weui-cell__bd">
-            激活状态
+            交易状态
             </div>
             <div class="weui-cell__bd">
-            绑定时间
+            交易时间
             </div>
         </div>
 
@@ -46,19 +46,19 @@
                 {{item.terminal}}
               </div>
               <div class="weui-cell__bd">
-                {{item.pos_version}}
+                {{item.trade_rmb}}
               </div>
               <div class="weui-cell__bd">
-                {{item.bind_merchant}}
+                {{item.trade_type}}
               </div>
               <div class="weui-cell__bd">
-                {{item.bind_status}}
+                {{item.card_code}}
               </div>
               <div class="weui-cell__bd">
-                {{item.activate_status}}
+                {{item.trade_status}}
               </div>
               <div class="weui-cell__bd">
-                {{item.bind_time|slice:":10"}}
+                {{item.trade_date|slice:":10"}}
               </div>
             </div>
 

@@ -105,6 +105,14 @@ def trade_index(request):
 
 
 @login_required
+def trade_list(request):
+    poses = dbutils.get_sdb_pos(request.user)
+    objs = dbutils.get_latest_trade(poses)
+    data = {"items": objs}
+    return render(request, "sdb/trade_list.html", data)
+
+
+@login_required
 def fenrun_index(request):
     data = {}
     return render(request, "sdb/fenrun_index.html", data)

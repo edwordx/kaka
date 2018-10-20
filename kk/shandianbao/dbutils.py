@@ -183,3 +183,9 @@ def get_sdb_pos_objs(user):
 def get_pos_jihuo_num(poses):
     num = models.SDBTerminal.objects.filter(terminal__in=poses).filter(activate_status=u"已激活").count()
     return num
+
+
+# trade
+def get_latest_trade(poses):
+    objs = models.SDBTrade.objects.filter(terminal__in=poses).order_by("-trade_date")[:100]
+    return objs
