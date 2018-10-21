@@ -90,7 +90,7 @@ def terminal_statistics(request):
     jihuo = dbutils.get_pos_jihuo_num(poses)
     left = total - jihuo
     if total > 0:
-        ratio = jihuo * 0.1 / total
+        ratio = jihuo * 100.0 / total
     else:
         ratio = 0
     ratio = "%.2f" % ratio
