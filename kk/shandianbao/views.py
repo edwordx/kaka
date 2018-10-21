@@ -104,6 +104,29 @@ def trade_index(request):
     return render(request, "sdb/trade_index.html", data)
 
 
+def trade_info(request):
+    data = {}
+    user = request.user
+    key = "cache:sdb:trade:%s" % user.username
+    data_json = rclient.get(key)
+    if data_json:
+        try:
+            res = json.loads(data_json)
+            terminal_num = res["terminal_num"]
+            rmb = res["rmb"]
+            rmb_yun = res["rmb_yun"]
+        except Exception:
+            terminal_num = 0
+            rmb = 0
+            rmb_yun = 0
+    else:
+        terminal_num = 0
+        rmb = 0
+        rmb_yun = 0
+    data = {"terminal_num": terminal_num, "rmb": rmb, "rmb_yun": rmb_yun}
+    return render(request, "sdb/trade_info.html", data)
+
+
 @login_required
 def trade_list(request):
     poses = dbutils.get_sdb_pos(request.user)

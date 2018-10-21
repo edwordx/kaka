@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^terminal_list/$', views.terminal_list, name="terminal_list"),
     url(r'^terminal_statistics/$', views.terminal_statistics, name="terminal_statistics"),
     url(r'^trade_index/$', views.trade_index, name="trade_index"),
+    url(r'^trade_info/$', views.trade_info, name="trade_info"),
     url(r'^trade_list/$', views.trade_list, name="trade_list"),
     url(r'^fenrun_index/$', views.fenrun_index, name="fenrun_index"),
     url(r'^fenrun_info/$', views.fenrun_info, name="fenrun_info"),
