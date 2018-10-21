@@ -189,3 +189,13 @@ def get_pos_jihuo_num(poses):
 def get_latest_trade(poses):
     objs = models.SDBTrade.objects.filter(terminal__in=poses).order_by("-trade_date")[:100]
     return objs
+
+
+# fenrun
+def get_sdb_fenrun(user):
+    objs = models.SDBFenRun.objects.filter(user=user)
+    if objs:
+        res = objs[0]
+    else:
+        res = None
+    return res

@@ -119,6 +119,19 @@ def fenrun_index(request):
 
 
 @login_required
+def fenrun_info(request):
+    user = request.user
+    fen = dbutils.get_sdbuserrmb_num(user)
+    rmb = "%.2f" % (fen / 100.0)
+    fenrun_obj = dbutils.get_sdb_fenrun(user)
+    data = {
+        "fenrun": fenrun_obj,
+        "rmb": rmb
+    }
+    return render(request, "sdb/fenrun_info.html", data)
+
+
+@login_required
 def set_fenrun(request, child):
     data = {}
     user = request.user
