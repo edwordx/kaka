@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     # vuser
     url(r'^$', views.home, name="vuser_home"),
+    url(r'^home_login/$', views.home_login, name="home_login"),
     url(r'^account/$', views.account, name="vuser_account"),
     url(r'^news/$', views.news, name="vuser_news"),
     url(r'^login/$', views.login, name="vuser_login"),

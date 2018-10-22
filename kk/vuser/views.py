@@ -26,6 +26,13 @@ def home(request):
     return render(request, "kk/index.html", data)
 
 
+def home_login(request):
+    scope = "snsapi_base"
+    state = "vuser_account"
+    url = wx_utils.get_wx_authorize_url(config.WX_REDIRECT_URL_LOGIN, state, scope)
+    return redirect(url)
+
+
 def news(request):
     """
     资讯页
