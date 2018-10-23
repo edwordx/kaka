@@ -24,10 +24,7 @@
             姓名
             </div>
             <div class="weui-cell__bd">
-            总量
-            </div>
-            <div class="weui-cell__bd">
-            激活
+            激活/总量
             </div>
             <div class="weui-cell__bd">
             时间
@@ -40,10 +37,7 @@
               <a href="{% url 'set_fenrun' obj.phone %}">{{obj.name}}</a>
               </div>
               <div class="weui-cell__bd">
-                {{num.0}}
-              </div>
-              <div class="weui-cell__bd">
-                {{num.1}}
+                {{num.1}}/{{num.0}}
               </div>
               <div class="weui-cell__bd">
                 {{obj.create_time| date:"Ymd"}}
