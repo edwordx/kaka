@@ -12,3 +12,10 @@ def home(request):
 
 def page_404(request):
     return render_to_response('404.html')
+
+
+def wx_js(request):
+    """
+    JS接口安全域名
+    """
+    return HttpResponse("pTnDPwvMzxAxH0Gr")

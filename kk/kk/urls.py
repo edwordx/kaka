@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name="site_home"),
+    url(r'^MP_verify_pTnDPwvMzxAxH0Gr.txt$', views.wx_js, name="wx_js"),
     url(r'^admin/', admin.site.urls),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^vuser/', include('vuser.urls')),
