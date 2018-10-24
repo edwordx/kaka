@@ -10,7 +10,7 @@ from captcha.models import CaptchaStore
 from captcha.helpers import captcha_image_url
 from .forms import LoginForm, RegisterForm
 from .models import UserProfile, WXUser
-from . import dbutils
+from . import dbutils, utils
 from kk import config, wx_utils
 
 
@@ -177,7 +177,7 @@ def wx_redirect(request):
     # logger.info(request.GET)
     code = request.GET.get("code")
     username = request.GET.get("state")
-    user = dbutils.get_user_by_username(username)
+    user = utils.get_user_by_username(username)
     res = wx_utils.get_access_token(code)
     # access_token = res["access_token"]
     openid = res["openid"]
