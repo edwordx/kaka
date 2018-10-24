@@ -49,14 +49,14 @@ class UserProfileAdmin(admin.ModelAdmin):
 
     def fatherx(self, obj):
         if obj.father and hasattr(obj.user, "userprofile"):
-            return '<a href="/admin/user/userprofile/?father__id__exact=%s" target="_blank">%s</a>' % (obj.father.id, obj.father.userprofile.name)
+            return '<a href="/admin/vuser/userprofile/?father__id__exact=%s" target="_blank">%s</a>' % (obj.father.id, obj.father.userprofile.name)
         else:
             return u"无"
     fatherx.allow_tags = True
     fatherx.short_description = u'导师'
 
     def namex(self, obj):
-        return '<a href="/admin/user/userprofile/?father__id__exact=%s" target="_blank">%s</a>' % (obj.user.id, obj.name)
+        return '<a href="/admin/vuser/userprofile/?father__id__exact=%s" target="_blank">%s</a>' % (obj.user.id, obj.name)
     namex.allow_tags = True
     namex.short_description = u'姓名'
     namex.admin_order_field = "name"
