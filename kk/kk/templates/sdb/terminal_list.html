@@ -23,21 +23,12 @@
             <div class="weui-cell__bd">
             终端号
             </div>
-            {# <div class="weui-cell__bd">
-            机具号
-            </div>
-            <div class="weui-cell__bd">
-            绑定商户号
-            </div> #}
             <div class="weui-cell__bd">
             绑定状态
             </div>
             <div class="weui-cell__bd">
             激活状态
             </div>
-            {# <div class="weui-cell__bd">
-            绑定时间
-            </div> #}
         </div>
 
         {% for item in items %}
@@ -45,21 +36,12 @@
               <div class="weui-cell__bd">
                 {{item.terminal}}
               </div>
-              {# <div class="weui-cell__bd">
-                {{item.pos_version}}
-              </div>
-              <div class="weui-cell__bd">
-                {{item.bind_merchant}}
-              </div> #}
               <div class="weui-cell__bd">
                 {{item.bind_status}}
               </div>
               <div class="weui-cell__bd">
                 {{item.activate_status}}
               </div>
-              {# <div class="weui-cell__bd">
-                {{item.bind_time|slice:":10"}}
-              </div> #}
             </div>
 
         {% endfor %}
