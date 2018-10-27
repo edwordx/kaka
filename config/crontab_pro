@@ -16,6 +16,10 @@
 1 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_rmb_yun >> /data/script/sdb_user_rmb_yun.log 2>&1
 10 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_child_rmb_yun >> /data/script/sdb_user_child_rmb_yun.log 2>&1
 
+# sdb rmb fanxian
+1 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_rmb_fx >> /data/script/sdb_user_rmb_fx.log 2>&1
+10 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_child_rmb_fx >> /data/script/sdb_user_child_rmb_fx.log 2>&1
+
 # sdb view
 10 */2 * * * /projects/kaka/config/run_command_pro.sh cache_sdb_terminal >> /data/script/cache_sdb_terminal.log 2>&1
 
