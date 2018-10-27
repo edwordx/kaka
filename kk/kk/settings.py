@@ -231,7 +231,7 @@ SUIT_CONFIG = {
         {'label': u'用户', 'app': 'vuser', 'icon': 'icon-user', 'models': ('UserProfile', )},
         {'label': u'微信用户', 'icon': 'icon-user', 'app': 'vuser', 'models': ('WXUser', )},
         {'label': u'闪电宝基础数据', 'icon': 'icon-heart', 'app': 'shandianbao', 'models': ('SDBTrade', 'SDBTerminal', 'SDBToken')},
-        {'label': u'闪电宝用户数据', 'icon': 'icon-heart', 'app': 'shandianbao', 'models': ('SDBPos', 'SDBFenRun', 'SDBUserRMB')},
+        {'label': u'闪电宝用户数据', 'icon': 'icon-heart', 'app': 'shandianbao', 'models': ('SDBPos', 'SDBFenRun', 'SDBUserRMB', 'SDBTiXianOrder')},
         {'label': u'闪电宝记录数据', 'icon': 'icon-heart', 'app': 'shandianbao', 'models': ('SDBProfit', 'SDBChildOneProfit', 'SDBChildTwoProfit', 'SDBChildThreeProfit')},
     ),
 
