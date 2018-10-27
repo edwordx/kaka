@@ -54,8 +54,8 @@ class SDBPosAdmin(admin.ModelAdmin):
 @admin.register(models.SDBFenRun)
 class SDBFenRunAdmin(admin.ModelAdmin):
     form = select2_modelform(models.SDBFenRun)
-    list_display = ["user", "nickname", "hardware_point", "point", "hardware_point_yun", "point_yun", "hardware_point_yin", "point_yin", "hardware_point_wx", "point_wx", "profit", "tax", "create_time", "update_time"]
-    fields = ["user", "hardware_point", "point", "hardware_point_yun", "point_yun", "hardware_point_yin", "point_yin", "hardware_point_wx", "point_wx", "profit", "tax"]
+    list_display = ["user", "nickname", "hardware_point", "point", "hardware_point_yun", "point_yun", "hardware_point_yin", "point_yin", "hardware_point_wx", "point_wx", "fanxian_rmb", "profit", "tax", "create_time", "update_time"]
+    fields = ["user", "hardware_point", "point", "hardware_point_yun", "point_yun", "hardware_point_yin", "point_yin", "hardware_point_wx", "point_wx", "fanxian_rmb", "profit", "tax"]
     search_fields = ["user__username"]
 
     def nickname(self, obj):
@@ -72,8 +72,8 @@ class SDBFenRunAdmin(admin.ModelAdmin):
 @admin.register(models.SDBUserRMB)
 class SDBUserRMBAdmin(admin.ModelAdmin):
     form = select2_modelform(models.SDBUserRMB)
-    list_display = ["user", "nickname", "rmb", "child_rmb", "child_two_rmb", "child_three_rmb", "is_auto", "create_time", "update_time"]
-    fields = ["user", "rmb", "child_rmb", "child_two_rmb", "child_three_rmb", "is_auto"]
+    list_display = ["user", "nickname", "rmb", "child_rmb", "child_two_rmb", "child_three_rmb", "fanxian_rmb", "fanxian_child_rmb", "is_auto", "create_time", "update_time"]
+    fields = ["user", "rmb", "child_rmb", "child_two_rmb", "child_three_rmb", "fanxian_rmb", "fanxian_child_rmb", "is_auto"]
     search_fields = ["user__username"]
     readonly_fields = fields
     list_filter = ["is_auto"]

@@ -17,6 +17,7 @@ POINT_TYPE_CHOICE = (
     ('YUN', u'云闪付'),
     ('YIN', u'银联快捷'),
     ('WX', u'微信支付宝'),
+    ('FX', u'返现'),
 )
 
 
@@ -133,6 +134,8 @@ class SDBFenRun(models.Model):
     # 微信
     POINT_CHOICE_WX = [("%.3f" % (i / 1000.), "%.3f" % (i / 1000.)) for i in range(300, 725, 5)]
     HARD_POINT_CHOICE_WX = [("%.3f" % (i / 1000.), "%.3f" % (i / 1000.)) for i in range(380, 550, 5)]
+    # 首刷返现
+    FX_RMB_CHOICE = [("%s" % i, "%s" % i) for i in range(120, 210, 10)]
 
     user = models.OneToOneField(User, verbose_name=u"用户")
     hardware_point = models.CharField(u"贷记卡硬件费率", choices=HARD_POINT_CHOICE, max_length=50)
@@ -143,6 +146,7 @@ class SDBFenRun(models.Model):
     point_yin = models.CharField(u"银联快捷代理费率", choices=POINT_CHOICE_YIN, max_length=50, blank=True)
     hardware_point_wx = models.CharField(u"微信支付宝硬件费率", choices=HARD_POINT_CHOICE_WX, max_length=50, blank=True)
     point_wx = models.CharField(u"微信支付宝代理费率", choices=POINT_CHOICE_WX, max_length=50, blank=True)
+    fanxian_rmb = models.CharField(u"返现金额（元）", choices=FX_RMB_CHOICE, max_length=50, default='120')
     profit = models.IntegerField(u"分润比例", default=100, validators=[MinValueValidator(0), MaxValueValidator(100)])
     tax = models.IntegerField(u"税点比例", default=6, validators=[MinValueValidator(3), MaxValueValidator(30)])
     message = models.TextField(u"说明", blank=True)
@@ -167,6 +171,8 @@ class SDBUserRMB(models.Model):
     child_rmb = models.IntegerField(u"推荐（一级）金额(分)", default=0)
     child_two_rmb = models.IntegerField(u"推荐（二级）金额(分)", default=0)
     child_three_rmb = models.IntegerField(u"推荐（三级）金额(分)", default=0)
+    fanxian_rmb = models.IntegerField(u"首刷返现", default=0)
+    fanxian_child_rmb = models.IntegerField(u"推荐首刷返现", default=0)
     create_time = models.DateTimeField(u"创建时间", auto_now_add=True)
     update_time = models.DateTimeField(u"更新时间", auto_now=True)
 
