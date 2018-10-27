@@ -72,7 +72,7 @@ def tixian(objs):
         name = user.userprofile.name
         n = user_rmb / MIN_RMB
         tixian_rmb = n * MIN_RMB
-        real_rmb = int(tixian * (profit / 100.0) * (1 - tax / 100.0))
+        real_rmb = int(tixian_rmb * (profit / 100.0) * (1 - tax / 100.0))
         fee_rmb = tixian_rmb - real_rmb
         tx = models.SDBTiXianOrder.objects.create(
             user=user,
