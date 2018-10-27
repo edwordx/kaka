@@ -182,3 +182,21 @@ class SDBChildThreeProfitAdmin(admin.ModelAdmin):
         return name
     nickname.allow_tags = True
     nickname.short_description = u'昵称'
+
+
+@admin.register(models.SDBTiXianOrder)
+class SDBTiXianOrderAdmin(admin.ModelAdmin):
+    list_display = ["user", "nickname", "user_account", "rmb", "fee", "status", "order_id", "order_type", "create_time", "pay_time", "finish_time"]
+    fields = ["user", "nickname", "user_account", "rmb", "fee", "status", "order_id", "order_type", "pay_time", "finish_time"]
+    search_fields = ["user__username", ]
+    list_filter = ["status", "order_type"]
+
+    def nickname(self, obj):
+        user = obj.user
+        if hasattr(user, "userprofile"):
+            name = user.userprofile.name
+        else:
+            name = u"无"
+        return name
+    nickname.allow_tags = True
+    nickname.short_description = u'昵称'

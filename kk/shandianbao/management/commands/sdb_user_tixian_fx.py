@@ -32,7 +32,7 @@ class Command(BaseCommand):
     @wrapper_raven
     def handle(self, phone, *args, **options):
         now = datetime.now()
-        print "__sync sdb user tixian"
+        print "__sync sdb user tixian __ fanxian"
         print now
         if phone == "all":
             objs = models.SDBUserRMB.objects.filter(is_auto=True)
@@ -81,9 +81,9 @@ def tixian(objs):
             fee=fee_rmb,
             profit=profit,
             tax=tax,
-            order_type="RMB",
+            order_type="FANXIAN_RMB",
         )
-        dbutils.sub_sdbuserrmb_rmb(user, tx.rmb)
+        dbutils.sub_sdbuserrmb_fanxian_rmb(user, tx.rmb)
         tx.pay_time = datetime.now()
         tx.status = "PD"
         tx.save()

@@ -168,6 +168,48 @@ def get_sdbuserrmb_child_three_num(user):
     return obj.child_three_rmb
 
 
+# fanxian rmb
+def add_sdbuserrmb_fanxian_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.fanxian_rmb += rmb
+        obj.save()
+
+
+def sub_sdbuserrmb_fanxian_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.fanxian_rmb -= rmb
+        obj.save()
+
+
+def get_sdbuserrmb_fanxian_num(user):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+    return obj.fanxian_rmb
+
+
+# fanxian child rmb
+def add_sdbuserrmb_fanxian_child_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.fanxian_child_rmb += rmb
+        obj.save()
+
+
+def sub_sdbuserrmb_fanxian_child_rmb(user, rmb):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+        obj.fanxian_child_rmb -= rmb
+        obj.save()
+
+
+def get_sdbuserrmb_fanxian_child_num(user):
+    with transaction.atomic():
+        obj, created = models.SDBUserRMB.objects.select_for_update().get_or_create(user=user, defaults={"rmb": 0})
+    return obj.fanxian_child_rmb
+
+
 # pos
 def get_sdb_pos(user):
     poses = models.SDBPos.objects.filter(user=user).values_list("terminal", flat=True)
