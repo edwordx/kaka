@@ -28,7 +28,7 @@ def get_client_ip(request):
     return request.META.get('REMOTE_ADDR', None)
 
 
-def wx_tixian(open_id, fen, name, user_ip=config.SERVER_IP):
+def wx_tixian(open_id, fen, name, desc=None, user_ip=config.SERVER_IP):
     """
     {'partner_trade_no': '1498390922201805216403871295',
     'payment_time': '2018-05-21 21:03:15',
@@ -44,13 +44,15 @@ def wx_tixian(open_id, fen, name, user_ip=config.SERVER_IP):
     pay = WxPay()
     api_cert_path = "/root/wxpay/apiclient_cert.pem"
     api_key_path = "/root/wxpay/apiclient_key.pem"
+    if desc is None:
+        desc = u"分润发放"
     data = {
         "openid": open_id,
         "amount": fen,
         "check_name": "FORCE_CHECK",
         "re_user_name": name,
         "spbill_create_ip": user_ip,
-        "desc": u"分润发放"
+        "desc": desc
     }
     res = pay.enterprise_payment(api_cert_path, api_key_path, **data)
     return res
