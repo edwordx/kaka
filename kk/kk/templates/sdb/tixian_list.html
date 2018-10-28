@@ -34,13 +34,13 @@
         {% for item in items %}
             <div class="weui-cell">
               <div class="weui-cell__bd">
-
+                {{ item.rmb }}
               </div>
               <div class="weui-cell__bd">
-
+                {{ item.pay_time | date:"Ymd" }}
               </div>
               <div class="weui-cell__bd">
-
+                {{ item.status }}
               </div>
             </div>
 

@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from . import dbutils
-from .models import SDBFenRun
+from .models import SDBFenRun, SDBTiXianOrder
 from vuser.utils import get_user_by_id
 from vuser.utils import rclient, get_user_by_username
 
@@ -217,6 +217,14 @@ def set_fenrun(request, child):
 
 @login_required
 def tixian_list(request):
-    objs = []
-    data = {"items": objs}
+    objs = SDBTiXianOrder.objects.filter(user=request.user)
+    items = []
+    for obj in objs:
+        info = {
+            "rmb": obj.rmb / 100.0,
+            "pay_time": obj.pay_time,
+            "status": obj.get_status_display
+        }
+        items.append(info)
+    data = {"items": items}
     return render(request, "sdb/tixian_list.html", data)
