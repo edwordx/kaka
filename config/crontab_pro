@@ -20,6 +20,11 @@
 1 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_rmb_fx >> /data/script/sdb_user_rmb_fx.log 2>&1
 10 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_child_rmb_fx >> /data/script/sdb_user_child_rmb_fx.log 2>&1
 
+# sdb tixian
+1 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_tixian --phone=all >> /data/script/sdb_user_tixian.log 2>&1
+
+0 * * * * /projects/kaka/config/run_command_pro.sh sdb_user_tixian_fx --phone=all >> /data/script/sdb_user_tixian_fx.log 2>&1
+
 # sdb view
 10 */2 * * * /projects/kaka/config/run_command_pro.sh cache_sdb_terminal >> /data/script/cache_sdb_terminal.log 2>&1
 

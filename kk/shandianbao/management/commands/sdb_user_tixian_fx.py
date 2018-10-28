@@ -50,9 +50,9 @@ class Command(BaseCommand):
 
 def tixian(objs):
     for obj in objs:
-        print "start:", obj.user, obj.rmb
+        print "start:", obj.user, obj.fanxian_rmb
         user = obj.user
-        user_rmb = obj.rmb
+        user_rmb = obj.fanxian_rmb
         if user_rmb < MIN_RMB:
             print "less than 10 RMB!"
             continue
