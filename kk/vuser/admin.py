@@ -74,6 +74,16 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(models.WXUser)
 class WXUserAdmin(admin.ModelAdmin):
-    list_display = ["user", "openid", "nickname", "sex", "province", "city", "country", "headimgurl", "update_time"]
+    list_display = ["user", "nickname", "openid", "nickname", "sex", "province", "city", "country", "headimgurl", "update_time"]
     fields = []
     search_fields = ["user__username"]
+
+    def nickname(self, obj):
+        user = obj.user
+        if hasattr(user, "userprofile"):
+            name = user.userprofile.name
+        else:
+            name = u"无"
+        return name
+    nickname.allow_tags = True
+    nickname.short_description = u'昵称'
