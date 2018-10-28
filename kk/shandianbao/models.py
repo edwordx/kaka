@@ -341,5 +341,5 @@ class SDBTiXianOrder(models.Model):
 
     class Meta:
         db_table = "sdb_tixian_order"
-        verbose_name = verbose_name_plural = u"闪电宝提现表"
+        verbose_name = verbose_name_plural = u"用户提现"
         ordering = ["-pay_time"]
