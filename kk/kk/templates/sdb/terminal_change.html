@@ -13,7 +13,7 @@
 
 <div class="bd mt40 mb40">
 
-<form method="post" action="">
+<form method="post" action="{% url 'terminal_change' %}">
     {% csrf_token %}
     <div class="weui-cells weui-cells_form">
         <div class="weui-cells__title fc-red">
@@ -62,12 +62,15 @@
     // seletc 选择
     $("#phone").select({
         title: "选择下级",
-        items: {{ users|safe }}
+        items: {{ users|safe }},
+        onChange: function(d) {
+          $("#phone").val(d.values);
+        }
       });
     $("#terminal").select({
         title: "选择机具",
         multi: true,
-        items: {{ terminals|safe }}
+        items: {{ terminals|safe }},
       });
     // 表单提交
     $("#submit").click(function() {

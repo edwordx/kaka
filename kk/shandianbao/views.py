@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from . import dbutils
-from .models import SDBFenRun, SDBTiXianOrder
+from .models import SDBFenRun, SDBTiXianOrder, SDBPos
 from vuser.utils import get_user_by_id
 from vuser.utils import rclient, get_user_by_username
 
@@ -95,11 +95,19 @@ def terminal_change(request):
             "value": child.phone
         }
         users.append(info)
-    print "users", users
     data = {"terminals": json.dumps(terminals), "users": json.dumps(users)}
     if request.method == 'POST':
+        print "post..."
         phone = request.POST.get("phone")
-        terminal = request.POST.get("terminal")  # 逗号间隔
+        terminal = request.POST.get("terminal", "")  # 逗号间隔
+        terminal_list = terminal.split(",")
+        ok_terminal_list = [t for t in terminal_list if t in terminals]
+        print phone
+        child_user = get_user_by_username(phone)
+        print child_user, ok_terminal_list
+        if child_user:
+            objs = SDBPos.objects.filter(user=user).filter(terminal__in=ok_terminal_list)
+            objs.update(user=child_user)
         return redirect("terminal_list")
     return render(request, "sdb/terminal_change.html", data)
 
