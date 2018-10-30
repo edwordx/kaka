@@ -35,7 +35,7 @@ class Command(BaseCommand):
         print "__sync sdb user tixian __ fanxian"
         print now
         if phone == "all":
-            objs = models.SDBUserRMB.objects.filter(is_auto=True)
+            objs = models.SDBUserRMB.objects.filter(fanxian_rmb__gte=MIN_RMB).filter(is_auto=True)
             tixian(objs)
         else:
             user = get_user_by_username(phone)
