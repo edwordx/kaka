@@ -97,14 +97,11 @@ def terminal_change(request):
         users.append(info)
     data = {"terminals": json.dumps(terminals), "users": json.dumps(users)}
     if request.method == 'POST':
-        print "post..."
         phone = request.POST.get("phone")
         terminal = request.POST.get("terminal", "")  # 逗号间隔
         terminal_list = terminal.split(",")
         ok_terminal_list = [t for t in terminal_list if t in terminals]
-        print phone
         child_user = get_user_by_username(phone)
-        print child_user, ok_terminal_list
         if child_user:
             objs = SDBPos.objects.filter(user=user).filter(terminal__in=ok_terminal_list)
             objs.update(user=child_user)
