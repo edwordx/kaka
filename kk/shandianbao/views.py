@@ -165,14 +165,14 @@ def set_fenrun(request, child):
         error = [u"用户不存在或者不是您邀请来的"]
         data.update({"error": error})
         return render(request, "sdb/set_fenrun.html", data)
-    try:
-        f_child_point = float(child_user.sdbfenrun.point)
-        f_child_point_yun = float(child_user.sdbfenrun.point_yun)
-    except Exception, e:
-        print e
-        error = [u"此用户未设置过分润， 请联系管理员设置"]
-        data.update({"error": error})
-        return render(request, "sdb/set_fenrun.html", data)
+    # try:
+    #     f_child_point = float(child_user.sdbfenrun.point)
+    #     f_child_point_yun = float(child_user.sdbfenrun.point_yun)
+    # except Exception, e:
+    #     print e
+    #     error = [u"此用户未设置过分润， 请联系管理员设置"]
+    #     data.update({"error": error})
+    #     return render(request, "sdb/set_fenrun.html", data)
     # 分润
     if hasattr(user, "sdbfenrun"):
         f_point = float(user.sdbfenrun.point)
@@ -208,9 +208,26 @@ def set_fenrun(request, child):
             data.update({"error": error})
             return render(request, "sdb/set_fenrun.html", data)
         # 保存改动
-        child_user.sdbfenrun.point = point
-        child_user.sdbfenrun.point_yun = point_yun
-        child_user.sdbfenrun.save()
+        if hasattr(child_user, "sdbfenrun"):
+            child_user.sdbfenrun.point = point
+            child_user.sdbfenrun.point_yun = point_yun
+            child_user.sdbfenrun.save()
+        else:
+            # 全部继承上级的数据
+            SDBFenRun.objects.create(
+                user=child_user,
+                hardware_point=user.sdbfenrun.hardware_point,
+                point=point,
+                hardware_point_yun=user.sdbfenrun.hardware_point_yun,
+                point_yun=point_yun,
+                hardware_point_yin=user.sdbfenrun.hardware_point_yin,
+                point_yin=user.sdbfenrun.point_yin,
+                hardware_point_wx=user.sdbfenrun.hardware_point_wx,
+                point_wx=user.sdbfenrun.point_wx,
+                fanxian_rmb=user.sdbfenrun.fanxian_rmb,
+                profit=user.sdbfenrun.profit,
+                tax=user.sdbfenrun.tax
+            )
         return redirect("friend_list")
     return render(request, "sdb/set_fenrun.html", data)
 
