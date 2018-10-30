@@ -20,27 +20,27 @@
         只能划拨自己机具给自己的下级，一旦划拨不可撤销！
         </div>
 
-        <div class="weui-cell {%if errors.point %}weui-cell_warn{% endif %}">
+        <div class="weui-cell {%if errors.phone %}weui-cell_warn{% endif %}">
             <div class="weui-cell__hd">
                 <label class="weui-label">下级</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" id="point" name="point" type="text">
+                <input class="weui-input" id="phone" name="phone" type="text">
             </div>
             <div class="weui-cell__ft">
-                <i class="weui-icon-warn">{{errors.point.0}}</i>
+                <i class="weui-icon-warn">{{errors.phone.0}}</i>
             </div>
         </div>
 
-        <div class="weui-cell {%if errors.rmb %}weui-cell_warn{% endif %}">
+        <div class="weui-cell {%if errors.terminal %}weui-cell_warn{% endif %}">
             <div class="weui-cell__hd">
                 <label class="weui-label">机具</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" id="rmb" name="rmb" type="text">
+                <input class="weui-input" id="terminal" name="terminal" type="text">
             </div>
             <div class="weui-cell__ft">
-                <i class="weui-icon-warn">{{errors.rmb.0}}</i>
+                <i class="weui-icon-warn">{{errors.terminal.0}}</i>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
         title: "选择下级",
         items: {{ users|safe }}
       });
-    $("#terminals").select({
+    $("#terminal").select({
         title: "选择机具",
         multi: true,
         items: {{ terminals|safe }}

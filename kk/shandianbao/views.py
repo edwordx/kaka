@@ -84,6 +84,27 @@ def terminal_list(request):
 
 
 @login_required
+def terminal_change(request):
+    user = request.user
+    terminals = dbutils.get_sdb_pos(user)
+    child_objs = user.children.all()
+    users = []
+    for child in child_objs:
+        info = {
+            "title": child.name,
+            "value": child.phone
+        }
+        users.append(info)
+    print "users", users
+    data = {"terminals": json.dumps(terminals), "users": json.dumps(users)}
+    if request.method == 'POST':
+        phone = request.POST.get("phone")
+        terminal = request.POST.get("terminal")  # 逗号间隔
+        return redirect("terminal_list")
+    return render(request, "sdb/terminal_change.html", data)
+
+
+@login_required
 def terminal_statistics(request):
     poses = dbutils.get_sdb_pos(request.user)
     total = len(poses)
@@ -221,12 +242,9 @@ def set_fenrun(request, child):
                 hardware_point_yun=user.sdbfenrun.hardware_point_yun,
                 point_yun=point_yun,
                 hardware_point_yin=user.sdbfenrun.hardware_point_yin,
-                point_yin=user.sdbfenrun.point_yin,
                 hardware_point_wx=user.sdbfenrun.hardware_point_wx,
-                point_wx=user.sdbfenrun.point_wx,
-                fanxian_rmb=user.sdbfenrun.fanxian_rmb,
                 profit=user.sdbfenrun.profit,
-                tax=user.sdbfenrun.tax
+                tax=user.sdbfenrun.tax,
             )
         return redirect("friend_list")
     return render(request, "sdb/set_fenrun.html", data)

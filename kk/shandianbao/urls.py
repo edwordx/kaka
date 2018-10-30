@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^friends/$', views.friend_list, name="friend_list"),
     url(r'^terminal_index/$', views.terminal_index, name="terminal_index"),
     url(r'^terminal_list/$', views.terminal_list, name="terminal_list"),
+    url(r'^terminal_change/$', views.terminal_change, name="terminal_change"),
     url(r'^terminal_statistics/$', views.terminal_statistics, name="terminal_statistics"),
     url(r'^trade_index/$', views.trade_index, name="trade_index"),
     url(r'^trade_info/$', views.trade_info, name="trade_info"),
