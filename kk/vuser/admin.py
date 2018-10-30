@@ -35,7 +35,7 @@ admin.site.register(User, MyUserAdmin)
 
 @admin.register(models.UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ["user", "namex", "fatherx", "phone", "sex", "code", "create_time", "terminals", "terminals_agent"]
+    list_display = ["user", "namex", "fatherx", "phone", "sex", "code", "create_time", "terminals_agent"]
     fields = ["user", "phone", "name", "sex", "is_vip", "code", "father"]
     search_fields = ["name", "phone"]
     all_fields = [f.name for f in models.UserProfile._meta.get_fields()]
