@@ -83,7 +83,7 @@ def tixian(objs):
             tax=tax,
             order_type="FANXIAN_CHILD_RMB",
         )
-        dbutils.sub_sdbuserrmb_fanxian_rmb(user, tx.rmb)
+        dbutils.sub_sdbuserrmb_fanxian_child_rmb(user, tx.rmb)
         tx.pay_time = datetime.now()
         tx.status = "PD"
         tx.save()
