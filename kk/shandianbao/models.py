@@ -137,9 +137,7 @@ class SDBFenRun(models.Model):
     POINT_CHOICE_WX = [("%.3f" % (i / 1000.), "%.3f" % (i / 1000.)) for i in range(300, 725, 5)]
     HARD_POINT_CHOICE_WX = [("%.3f" % (i / 1000.), "%.3f" % (i / 1000.)) for i in range(380, 550, 5)]
     # 首刷返现
-    fx_rmb_choice = [("%s" % i, "%s" % i) for i in range(80, 210, 10)]
-    fx_rmb_choice.append(("0", "0"))
-    FX_RMB_CHOICE = fx_rmb_choice
+    FX_RMB_CHOICE = [("%s" % i, "%s" % i) for i in range(0, 310, 10)]
 
     user = models.OneToOneField(User, verbose_name=u"用户")
     hardware_point = models.CharField(u"贷记卡硬件费率", choices=HARD_POINT_CHOICE, max_length=50)

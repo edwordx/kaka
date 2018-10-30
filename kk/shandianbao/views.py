@@ -203,15 +203,19 @@ def set_fenrun(request, child):
     if hasattr(user, "sdbfenrun"):
         f_point = float(user.sdbfenrun.point)
         f_point_yun = float(user.sdbfenrun.point_yun)
+        f_fanxian = float(user.sdbfenrun.fanxian_rmb)
         point_list = [x[0] for x in SDBFenRun.POINT_CHOICE if float(x[0]) >= f_point]
         point_yun_list = [x[0] for x in SDBFenRun.POINT_CHOICE_YUN if float(x[0]) >= f_point_yun]
+        fanxian_list = [x[0] for x in SDBFenRun.FX_RMB_CHOICE if float(x[0]) <= f_fanxian]
         child_fenrun = {
             "point": json.dumps(point_list),
-            "point_yun": json.dumps(point_yun_list)
+            "point_yun": json.dumps(point_yun_list),
+            "fanxian": json.dumps(fanxian_list)
         }
     else:
         point_list = []
         point_yun_list = []
+        fanxian_list = []
         child_fenrun = {}
     data.update(child_fenrun)
 
@@ -229,7 +233,8 @@ def set_fenrun(request, child):
         # 数值判断
         point = request.POST.get("point")
         point_yun = request.POST.get("point_yun")
-        if point not in point_list or point_yun not in point_yun_list:
+        fanxian = request.POST.get("fanxian")
+        if point not in point_list or point_yun not in point_yun_list or fanxian not in fanxian_list:
             error = [u"分润点错误"]
             data.update({"error": error})
             return render(request, "sdb/set_fenrun.html", data)
@@ -237,6 +242,7 @@ def set_fenrun(request, child):
         if hasattr(child_user, "sdbfenrun"):
             child_user.sdbfenrun.point = point
             child_user.sdbfenrun.point_yun = point_yun
+            child_user.sdbfenrun.fanxian_rmb = fanxian
             child_user.sdbfenrun.save()
         else:
             # 全部继承上级的数据
@@ -248,6 +254,7 @@ def set_fenrun(request, child):
                 point_yun=point_yun,
                 hardware_point_yin=user.sdbfenrun.hardware_point_yin,
                 hardware_point_wx=user.sdbfenrun.hardware_point_wx,
+                fanxian_rmb=fanxian,
                 profit=user.sdbfenrun.profit,
                 tax=user.sdbfenrun.tax,
             )

@@ -47,6 +47,18 @@
             </div>
         </div>
 
+        <div class="weui-cell {%if errors.fanxian %}weui-cell_warn{% endif %}">
+            <div class="weui-cell__hd">
+                <label class="weui-label">返现金额</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="fanxian" name="fanxian" type="text">
+            </div>
+            <div class="weui-cell__ft">
+                <i class="weui-icon-warn">{{errors.fanxian.0}}</i>
+            </div>
+        </div>
+
 
         <div class="weui-btn-area">
             <button class="weui-btn weui-btn_primary" id="submit" type="submit">确认申请</button>
@@ -71,6 +83,10 @@
     $("#point_yun").select({
         title: "选择云闪付分润点",
         items: {{ point_yun|safe }}
+      });
+    $("#fanxian").select({
+        title: "选择返现金额",
+        items: {{ fanxian|safe }}
       });
     // 表单提交
     $("#submit").click(function() {
