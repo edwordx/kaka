@@ -229,7 +229,11 @@ def get_pos_jihuo_num(poses):
 
 # trade
 def get_latest_trade(poses):
-    objs = models.SDBTrade.objects.filter(terminal__in=poses).order_by("-trade_date")[:100]
+    qs = models.SDBTrade.objects.filter(terminal__in=poses).filter(return_code="00")
+    objs_01 = qs.filter(card_type=u"贷记卡").filter(trade_type__in=[u"刷卡支付收款", u"云闪付支付收款"]).filter(business_type=u"非VIP交易")
+    objs_02 = qs.filter(trade_type=u"试刷")
+    objs = objs_01 | objs_02
+    objs = objs.order_by("-trade_date")[:100]
     return objs
 
 
