@@ -78,8 +78,8 @@ def process_sdb_one_rmb(obj, default_user):
         return
 
     if hasattr(user, "sdbfenrun"):
-        user_point = user.sdbfenrun.point
-        hardware_point = user.sdbfenrun.hardware_point
+        user_point = user.sdbfenrun.point_yun
+        hardware_point = user.sdbfenrun.hardware_point_yun
     else:
         print "no user fenrun!"
         return
@@ -101,8 +101,8 @@ def process_sdb_one_rmb(obj, default_user):
         return
 
     if hasattr(father, "sdbfenrun"):
-        father_user_point = father.sdbfenrun.point
-        father_hardware_point = father.sdbfenrun.hardware_point
+        father_user_point = father.sdbfenrun.point_yun
+        father_hardware_point = father.sdbfenrun.hardware_point_yun
     else:
         print "no father fenrun!"
         return
@@ -162,8 +162,8 @@ def process_sdb_two_rmb(obj, default_user):
         return
 
     if hasattr(user, "sdbfenrun"):
-        user_point = user.sdbfenrun.point
-        hardware_point = user.sdbfenrun.hardware_point
+        user_point = user.sdbfenrun.point_yun
+        hardware_point = user.sdbfenrun.hardware_point_yun
     else:
         print "no user fenrun!"
         return
@@ -185,8 +185,8 @@ def process_sdb_two_rmb(obj, default_user):
         return
 
     if hasattr(father, "sdbfenrun"):
-        father_user_point = father.sdbfenrun.point
-        father_hardware_point = father.sdbfenrun.hardware_point
+        father_user_point = father.sdbfenrun.point_yun
+        father_hardware_point = father.sdbfenrun.hardware_point_yun
     else:
         print "no father fenrun!"
         return
@@ -204,8 +204,8 @@ def process_sdb_two_rmb(obj, default_user):
         return
 
     if hasattr(father_two, "sdbfenrun"):
-        father_two_user_point = father_two.sdbfenrun.point
-        father_two_hardware_point = father_two.sdbfenrun.hardware_point
+        father_two_user_point = father_two.sdbfenrun.point_yun
+        father_two_hardware_point = father_two.sdbfenrun.hardware_point_yun
     else:
         print "no father_two fenrun!"
         return
@@ -270,8 +270,8 @@ def process_sdb_three_rmb(obj, default_user):
         return
 
     if hasattr(user, "sdbfenrun"):
-        user_point = user.sdbfenrun.point
-        hardware_point = user.sdbfenrun.hardware_point
+        user_point = user.sdbfenrun.point_yun
+        hardware_point = user.sdbfenrun.hardware_point_yun
     else:
         print "no user fenrun!"
         return
@@ -293,8 +293,8 @@ def process_sdb_three_rmb(obj, default_user):
         return
 
     if hasattr(father, "sdbfenrun"):
-        father_user_point = father.sdbfenrun.point
-        father_hardware_point = father.sdbfenrun.hardware_point
+        father_user_point = father.sdbfenrun.point_yun
+        father_hardware_point = father.sdbfenrun.hardware_point_yun
     else:
         print "no father fenrun!"
         return
@@ -312,8 +312,8 @@ def process_sdb_three_rmb(obj, default_user):
         return
 
     if hasattr(father_two, "sdbfenrun"):
-        father_two_user_point = father_two.sdbfenrun.point
-        father_two_hardware_point = father_two.sdbfenrun.hardware_point
+        father_two_user_point = father_two.sdbfenrun.point_yun
+        father_two_hardware_point = father_two.sdbfenrun.hardware_point_yun
     else:
         print "no father_two fenrun!"
         return
@@ -331,8 +331,8 @@ def process_sdb_three_rmb(obj, default_user):
         return
 
     if hasattr(father_three, "sdbfenrun"):
-        father_three_user_point = father_three.sdbfenrun.point
-        father_three_hardware_point = father_three.sdbfenrun.hardware_point
+        father_three_user_point = father_three.sdbfenrun.point_yun
+        father_three_hardware_point = father_three.sdbfenrun.hardware_point_yun
     else:
         print "no father_three fenrun!"
         return
