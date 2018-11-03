@@ -37,3 +37,20 @@
 10 */2 * * * /projects/kaka/config/run_command_pro.sh cache_sdb_terminal >> /data/script/cache_sdb_terminal.log 2>&1
 
 # run once
+
+
+
+####fzcj start
+# jk data
+*/15 * * * * /projects/fzcj/config/run_command_pro.sh jk_merchant >> /data/script/fzcj/jk_data.log 2>&1
+*/15 * * * * /projects/fzcj/config/run_command_pro.sh jk_terminal >> /data/script/fzcj/jk_data.log 2>&1
+*/15 * * * * /projects/fzcj/config/run_command_pro.sh jk_trade >> /data/script/fzcj/jk_data.log 2>&1
+*/21 * * * * /projects/fzcj/config/run_command_pro.sh jk_settlement >> /data/script/fzcj/jk_data.log 2>&1
+
+# jk rmb
+#*/30 * * * * /projects/fzcj/config/run_command_pro.sh jk_user_rmb >> /data/script/fzcj/jk_user_rmb.log 2>&1
+#1 * * * * /projects/fzcj/config/run_command_pro.sh jk_child_user_rmb >> /data/script/fzcj/jk_child_user_rmb.log 2>&1
+#30 13 * * * /projects/fzcj/config/run_command_pro.sh jk_user_tixian --phone=all >> /data/script/fzcj/jk_user_tixian.log 2>&1
+#0 14 * * * /projects/fzcj/config/run_command_pro.sh jk_user_child_tixian --phone=all >> /data/script/fzcj/jk_user_child_tixian.log 2>&1
+
+#### end fzcj
