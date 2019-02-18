@@ -79,7 +79,7 @@ def get_activate_trade(cookies, page):
         "terId": "",
         "bindFlag": "",
         "isActive": "",
-        "yearBatchno": "2018",
+        "yearBatchno": "ALL",
     }
     r = requests.post(url, data=data, cookies=cookies)
     html = r.content.decode("utf-8")
