@@ -28,7 +28,7 @@ HEADERS = {
     'Content-type': 'application/x-www-form-urlencoded',
     'Host': 'shandianbao.chinapnr.com',
     'Origin': 'https://shandianbao.chinapnr.com',
-    'Referer': 'https://shandianbao.chinapnr.com/supm/main/index',
+    'Referer': 'https://shandianbao.chinapnr.com/supm/TER101/index',
     'X-Requested-With': 'XMLHttpRequest',
     "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) C,hrome/43.0.2357.124 Safari/537.36",
 }
