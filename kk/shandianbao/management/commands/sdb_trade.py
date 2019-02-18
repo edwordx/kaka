@@ -129,7 +129,7 @@ def get_activate_trade(cookies, page, adate):
     soup = BeautifulSoup(html)
     data = []
     total = r1(ur"共(\d+)条记录", html)
-    # print html
+    print html
     print "total", total, "page", page
     if not total or not total.isdigit():
         disable_token(token)
