@@ -110,6 +110,7 @@ def get_terminal_data(cookies):
     retry = 3
     while True:
         time.sleep(SLEEP_TIME)
+        print "retry", retry
         try:
             data, total = get_activate_trade(cookies, page)
         except Exception, e:
