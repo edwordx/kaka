@@ -19,6 +19,7 @@ warnings.filterwarnings("ignore")
 
 TIMEOUT = 120  # 超时时间
 SLEEP_TIME = 2
+RETRY = 5
 HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, sdch, br",
@@ -133,7 +134,8 @@ def get_activate_trade(cookies, page, adate):
     # print html
     print "total", total, "page", page
     if not total or not total.isdigit():
-        disable_token(token)
+        # disable_token(token)
+        pass
     else:
         total = int(total)
     tbody = soup.find("tbody")
@@ -150,15 +152,20 @@ def get_trade_data(cookies, adate):
     print "get_trade_data...", adate
     all_data = []
     page = 1
-    retry = 3
+    page_retry_dict = {}
     while True:
         time.sleep(SLEEP_TIME)
+        key = (adate, page)
+        if key not in page_retry_dict:
+            page_retry_dict[key] = RETRY
+        print "retry, page", key, page_retry_dict[key]
         try:
             data, total = get_activate_trade(cookies, page, adate)
-        except Exception, e:
-            print e
-            retry -= 1
-            if retry < 0:
+            total = int(total)
+        except Exception:
+            page_retry_dict[key] -= 1
+            if page_retry_dict[key] < 0:
+                disable_token(token)
                 break
             else:
                 continue

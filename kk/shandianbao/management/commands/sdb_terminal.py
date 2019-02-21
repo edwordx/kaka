@@ -121,6 +121,7 @@ def get_terminal_data(cookies):
         except Exception:
             page_retry_dict[page] -= 1
             if page_retry_dict[page] < 0:
+                disable_token(token)
                 break
             else:
                 continue
