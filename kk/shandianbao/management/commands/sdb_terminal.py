@@ -90,7 +90,8 @@ def get_activate_trade(cookies, page):
     print "total", total, "page", page
     if not total or not total.isdigit():
         # disable_token(token)
-        print html
+        # print html
+        pass
     else:
         total = int(total)
     tbody = soup.find("tbody")
@@ -116,8 +117,7 @@ def get_terminal_data(cookies):
         try:
             data, total = get_activate_trade(cookies, page)
             total = int(total)
-        except Exception, e:
-            print e
+        except Exception:
             page_retry_dict[page] -= 1
             if page_retry_dict[page] < 0:
                 break
