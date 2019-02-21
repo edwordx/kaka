@@ -19,6 +19,7 @@ warnings.filterwarnings("ignore")
 
 TIMEOUT = 120  # 超时时间
 SLEEP_TIME = 0.2  # 每次调用间隔时间
+RETRY = 5  # 重试次数
 HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, sdch, br",
@@ -112,7 +113,7 @@ def get_terminal_data(cookies):
     while True:
         time.sleep(SLEEP_TIME)
         if page not in page_retry_dict:
-            page_retry_dict[page] = 3
+            page_retry_dict[page] = RETRY
         print "retry, page", page, page_retry_dict[page]
         try:
             data, total = get_activate_trade(cookies, page)
