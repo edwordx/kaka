@@ -18,6 +18,7 @@ sys.setdefaultencoding('utf-8')
 warnings.filterwarnings("ignore")
 
 TIMEOUT = 120  # 超时时间
+SLEEP_TIME = 2  # 每次调用间隔时间
 HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, sdch, br",
@@ -108,6 +109,7 @@ def get_terminal_data(cookies):
     page = 1
     retry = 3
     while True:
+        time.sleep(SLEEP_TIME)
         try:
             data, total = get_activate_trade(cookies, page)
         except Exception, e:
@@ -121,7 +123,6 @@ def get_terminal_data(cookies):
         if page * 10 >= total:
             break
         page += 1
-        time.sleep(0.2)
     return all_data
 
 
