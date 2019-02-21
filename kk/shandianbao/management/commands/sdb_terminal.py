@@ -18,7 +18,7 @@ sys.setdefaultencoding('utf-8')
 warnings.filterwarnings("ignore")
 
 TIMEOUT = 120  # 超时时间
-SLEEP_TIME = 2  # 每次调用间隔时间
+SLEEP_TIME = 0.2  # 每次调用间隔时间
 HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, sdch, br",
@@ -107,17 +107,19 @@ def get_terminal_data(cookies):
     print "get_terminal_data..."
     all_data = []
     page = 1
-    retry = 3
+    page_retry_dict = {}
     while True:
         time.sleep(SLEEP_TIME)
-        print "retry", retry
+        if page not in page_retry_dict:
+            page_retry_dict[page] = 3
+        print "retry, page", page, page_retry_dict[page]
         try:
             data, total = get_activate_trade(cookies, page)
             total = int(total)
         except Exception, e:
             print e
-            retry -= 1
-            if retry < 0:
+            page_retry_dict[page] -= 1
+            if page_retry_dict[page] < 0:
                 break
             else:
                 continue
