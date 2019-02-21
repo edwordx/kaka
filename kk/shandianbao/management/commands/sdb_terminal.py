@@ -87,10 +87,10 @@ def get_activate_trade(cookies, page):
     soup = BeautifulSoup(html)
     data = []
     total = r1(ur"共(\d+)条记录", html)
-    # print html
     print "total", total, "page", page
     if not total or not total.isdigit():
-        disable_token(token)
+        # disable_token(token)
+        print html
     else:
         total = int(total)
     tbody = soup.find("tbody")
