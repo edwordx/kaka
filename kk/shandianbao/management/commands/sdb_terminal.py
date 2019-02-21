@@ -113,6 +113,7 @@ def get_terminal_data(cookies):
         print "retry", retry
         try:
             data, total = get_activate_trade(cookies, page)
+            total = int(total)
         except Exception, e:
             print e
             retry -= 1
